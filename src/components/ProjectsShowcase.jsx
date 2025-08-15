@@ -26,10 +26,11 @@ const projects = [
 
 const ProjectsShowcase = () => {
   return (
-    <section className="bg-white dark:bg-gray-900 transition-colors duration-300 py-20 px-5 md:px-10">
+    <section className="   transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">
-           <span className="text-blue-600 me-1">مشاريعنا</span>المنفذة
+        <h2 className="text-3xl md:text-4xl font-bold text-center     mb-12">
+           {/* <span className="text-blue-600 me-1">مشاريعنا</span>المنفذة */}
+           <span className=" me-1">مشاريعنا</span>المنفذة
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (

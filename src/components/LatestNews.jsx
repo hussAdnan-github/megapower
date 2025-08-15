@@ -26,14 +26,15 @@ const newsArticles = [
 
 const LatestNews = () => {
   return (
-    <section className="bg-white dark:bg-gray-900 transition-colors duration-300 py-20 px-5 md:px-10">
+    <section className="    transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">
-          آخر  <span className="text-blue-600">الأخبار</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-center     mb-12">
+          {/* آخر  <span className="text-blue-600">الأخبار</span> */}
+          آخر  <span className=" ">الأخبار</span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {newsArticles.map((article, index) => (
-            <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+            <div key={index} className="   rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
               <Link href={article.link} className="block overflow-hidden h-52">
                 <Image
                   src={article.imageSrc}
@@ -44,15 +45,15 @@ const LatestNews = () => {
                 />
               </Link>
               <div className="p-6 flex-grow flex flex-col">
-                <span className="text-sm text-gray-500 dark:text-gray-400 mb-2">{article.date}</span>
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+                <span className="text-sm  mb-2">{article.date}</span>
+                <h3 className="text-xl font-bold    mb-4">
                   <Link href={article.link} className="hover:text-blue-600 transition-colors duration-300">
                     {article.title}
                   </Link>
                 </h3>
                 <Link
                   href={article.link}
-                  className="mt-auto inline-block text-blue-600 dark:text-blue-400 hover:underline font-semibold"
+                  className="mt-auto inline-block text-blue-600   hover:underline font-semibold"
                 >
                   اقرأ المزيد <i className="fas fa-arrow-left"></i>
                 </Link>

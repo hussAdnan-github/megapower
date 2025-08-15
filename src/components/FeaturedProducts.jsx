@@ -26,15 +26,16 @@ const featuredProducts = [
 
 const FeaturedProducts = () => {
   return (
-    <section className="bg-gray-100 dark:bg-gray-800 transition-colors duration-300 py-20 px-5 md:px-10">
+    <section className="    transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">
-          منتجاتنا <span className="text-blue-600">المميزة</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-center    mb-12">
+          {/* منتجاتنا <span className="text-blue-600">المميزة</span> */}
+          منتجاتنا <span className=" ">المميزة</span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuredProducts.map((product, index) => (
-            <div key={index} className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
-              <div className="p-4 bg-gray-50 dark:bg-gray-950 flex justify-center items-center h-60">
+            <div key={index} className="   rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+              <div className="p-4    flex justify-center items-center h-60">
                 <Image 
                   src={product.imageSrc} 
                   alt={product.name} 
@@ -44,11 +45,11 @@ const FeaturedProducts = () => {
                 />
               </div>
               <div className="p-6 text-center flex-grow flex flex-col">
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{product.name}</h3>
-                <p className="text-gray-600 dark:text-gray-400 flex-grow mb-4">{product.description}</p>
+                <h3 className="text-xl font-bold text-gray-800  mb-2">{product.name}</h3>
+                <p className="  flex-grow mb-4">{product.description}</p>
                 <Link 
                   href={product.link}
-                  className="mt-auto inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300"
+                  className="mt-auto inline-block bg-blue-600 hover:bg-blue-700   font-semibold py-3 px-6 rounded-full transition-colors duration-300"
                 >
                   اكتشف المزيد
                 </Link>

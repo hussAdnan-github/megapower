@@ -1,0 +1,24 @@
+{
+  "hdeader": {
+    "home": "الرئيسية",
+    "Projects": "المشاريع",
+    "News": "الأخبار",
+    "Products": "المنتجات"
+  },
+  "Hero": {
+    "title": "طاقة نقية لمستقبل مشرق",
+    "subTitle": "أنظمة تخزين بطاريات LiFePO4 موثوقة وآمنة.",
+    "btn": "اكتشف المنتجات"
+  },
+  "Layout": {
+    "whytitle": "لماذا تختار ميجا باور؟",
+    "Productstitle": "منتجات مميزة",
+    "Projectstitle": "مشاريعنا المنفذة",
+    "Newstitle": "آخر الأخبار",
+    "confidencetitle": "جودة وثقة معتمدة",
+    "btnProducts": "عرض كل المنتجات",
+    "btnProjects": "عرض كل المشاريع",
+    "btnNews": "عرض كل الأخبار"
+  }
+   
+}

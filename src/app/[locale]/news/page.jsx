@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 const articles = [
   {
@@ -65,9 +66,10 @@ export default function NewsPage() {
   const filteredArticles = activeCategory === 'all'
     ? articles
     : articles.filter(article => article.categorySlug === activeCategory);
-
+const t = useTranslations('HomePage');
   return (
     <>
+   
       {/* Page Header */}
       <section className="bg-blue-600 text-white text-center py-20 px-5">
         <h1 className="text-4xl md:text-5xl font-bold mb-2">الأخبار والمقالات</h1>

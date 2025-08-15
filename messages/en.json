@@ -1,0 +1,24 @@
+{
+  "hdeader": {
+    "home": "Home",
+    "Projects": "Projects",
+    "News": "News",
+    "Products": "Products"
+  },
+  "Hero": {
+    "title": "Pure Energy for a Brighter Future",
+    "subTitle": "Reliable and safe LiFePO4 battery storage systems.",
+    "btn": "Discover Products"
+  },
+  "Layout": {
+    "whytitle": "Why Choose MEGA POWER?",
+    "Productstitle": "Featured Products",
+    "Projectstitle": "Our Executed Projects",
+    "Newstitle": "Latest News",
+    "confidencetitle": "Certified Quality & Trust",
+    "btnProducts": "View All Products",
+    "btnProjects": "View All Projects",
+    "btnNews": "View All News"
+  }
+   
+}
