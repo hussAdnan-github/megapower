@@ -1,5 +1,4 @@
-// src/components/Certifications.js
-
+ 
 import Image from 'next/image';
 
 const certifications = [

@@ -1,5 +1,4 @@
-// src/components/LatestNews.js
-
+ 
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -34,7 +33,7 @@ const LatestNews = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {newsArticles.map((article, index) => (
-            <div key={index} className="   rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+            <div key={index} className=" dark-bg-li  rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
               <Link href={article.link} className="block overflow-hidden h-52">
                 <Image
                   src={article.imageSrc}

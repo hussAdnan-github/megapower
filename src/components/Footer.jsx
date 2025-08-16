@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-400 dark:bg-gray-950 transition-colors duration-300">
+    <footer className="bg-[#222222] text-gray-400   transition-colors duration-300">
       <div className="container mx-auto px-5 md:px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
           {/* العمود 1: الشعار والشعار الفرعي */}

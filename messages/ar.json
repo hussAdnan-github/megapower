@@ -18,7 +18,17 @@
     "confidencetitle": "جودة وثقة معتمدة",
     "btnProducts": "عرض كل المنتجات",
     "btnProjects": "عرض كل المشاريع",
-    "btnNews": "عرض كل الأخبار"
+    "btnNews": "عرض كل الأخبار",
+    "ContactUs": "أدخل عنوان بريدك الإلكتروني",
+    "ContactUsBtn": " ابدأ الآن"
+  },
+   "Headerpage": {
+    "titleproducts": "طاقة نقية لمستقبل مشرق",
+    "subTitleproducts": "أنظمة تخزين بطاريات LiFePO4 موثوقة وآمنة.",
+    "titleProjects": "قصص نجاحنا",
+    "subTitleProjects": "شاهد كيف تُحدث ميجا باور ثورة في استخدام الطاقة في المنطقة.",
+    "titleNews": "الأخبار والمقالات",
+    "subTitleNews": "ابق على اطلاع بآخر أخبار الشركة وفعالياتها ومقالاتها التقنية."
+  
   }
-   
 }

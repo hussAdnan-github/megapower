@@ -20,7 +20,7 @@ const Header = () => {
     const t = useTranslations('hdeader');
 
   return (
-    <header className="shadow-md sticky top-0 z-50   transition-colors duration-300  ">
+    <header className="shadow-md sticky top-0 z-50 dark-bg-li  transition-colors duration-300  ">
       <nav className="flex justify-between items-center py-4 px-5 md:px-10">
         {/* الشعار */}
         <Link href="/" className="logo">
@@ -35,7 +35,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href="/projects" className="font-semibold transition-colors">
+            <Link href="/projects" className=" font-semibold transition-colors">
              {t('Products')}
             </Link>
           </li>

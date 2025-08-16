@@ -18,7 +18,20 @@
     "confidencetitle": "Certified Quality & Trust",
     "btnProducts": "View All Products",
     "btnProjects": "View All Projects",
-    "btnNews": "View All News"
+    "btnNews": "View All News",
+    "ContactUs": "Enter Your Email Address",
+    "ContactUsBtn": "Get Started"
+
+
+  },
+   "Headerpage": {
+    "titleproducts": "طاقة نقية لمستقبل مشرق",
+    "subTitleproducts": "أنظمة تخزين بطاريات LiFePO4 موثوقة وآمنة.",
+    "titleProjects": "Our success stories",
+    "subTitleProjects": "See how Mega Power is revolutionizing energy use in the region.",
+    "titleNews": "News and articles",
+    "subTitleNews": "Stay up to date with the latest company news, events, and technical articles."
+  
   }
    
 }

@@ -1,4 +1,27 @@
 @import "tailwindcss";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+ 
+ :root {
+  --background-color_light: #ffffff;
+  --text-color: #111827;
+  --secondary-text-color: #4b5563;
+ --background-color: #f8f9fa;
+}
 
+html.dark {
+  --background-color_light: #1e1e1e;
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --secondary-text-color: #a1a1aa;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+ 
+.dark-bg-li {
+   background-color: var(--background-color_light); 
+}
  

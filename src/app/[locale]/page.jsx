@@ -17,11 +17,6 @@ export default function Home() {
       <LatestNews />
       <Certifications />
       <ContactUs />
-
-
-
-
-
     </>
   );
 }

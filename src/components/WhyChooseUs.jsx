@@ -1,4 +1,4 @@
-// src/components/WhyChooseUs.js
+import MainTitle from "./MainTitle";
 
 const features = [
   {
@@ -22,15 +22,11 @@ const features = [
     description: "نظم إدارة البطارية (BMS) تضمن الأداء الأمثل وتحمي من التلف.",
   },
 ];
-
 const WhyChooseUs = () => {
   return (
-    <section className="     transition-colors duration-300 py-20 px-5 md:px-10">
+    <section className="    dark-bg-li    transition-colors duration-300 py-30 px-5 md:px-10">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center     mb-12">
-          {/* لماذا تختار <span className="text-blue-600">ميجا باور</span>؟ */}
-          لماذا تختار <span className="">ميجا باور</span>؟
-        </h2>
+        <MainTitle title={'  لماذا تختار ميجا  ؟'}/>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="flex flex-col items-center text-center p-6     rounded-lg shadow-md transition-shadow hover:shadow-xl">
@@ -44,5 +40,4 @@ const WhyChooseUs = () => {
     </section>
   );
 };
-
 export default WhyChooseUs;

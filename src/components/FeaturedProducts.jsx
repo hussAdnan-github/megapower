@@ -1,5 +1,4 @@
-// src/components/FeaturedProducts.js
-
+ 
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -26,7 +25,7 @@ const featuredProducts = [
 
 const FeaturedProducts = () => {
   return (
-    <section className="    transition-colors duration-300 py-20 px-5 md:px-10">
+    <section className=" transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center    mb-12">
           {/* منتجاتنا <span className="text-blue-600">المميزة</span> */}
@@ -34,7 +33,7 @@ const FeaturedProducts = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuredProducts.map((product, index) => (
-            <div key={index} className="   rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+            <div key={index} className="dark-bg-li   rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
               <div className="p-4    flex justify-center items-center h-60">
                 <Image 
                   src={product.imageSrc} 
@@ -45,7 +44,7 @@ const FeaturedProducts = () => {
                 />
               </div>
               <div className="p-6 text-center flex-grow flex flex-col">
-                <h3 className="text-xl font-bold text-gray-800  mb-2">{product.name}</h3>
+                <h3 className="text-xl font-bold   mb-2">{product.name}</h3>
                 <p className="  flex-grow mb-4">{product.description}</p>
                 <Link 
                   href={product.link}

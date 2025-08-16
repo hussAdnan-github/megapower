@@ -1,5 +1,4 @@
-// src/components/ProjectsShowcase.js
-
+ 
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -8,7 +7,7 @@ const projects = [
     imageSrc: "/assets/project.png",
     title: "مشروع سكني",
     description: "توفير حلول طاقة متكاملة لمنزل حديث في الرياض، مما يضمن الاكتفاء الذاتي من الطاقة.",
-    link: "#" // يمكنك تغيير هذا الرابط لاحقًا
+    link: "#"  
   },
   {
     imageSrc: "/assets/project.png",
