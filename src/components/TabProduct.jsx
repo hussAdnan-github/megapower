@@ -4,7 +4,7 @@ import SafeHtmlRenderer from './SafeHtmlRenderer';
 
 export default function TabProduct({rawHtml}) {
   const [activeTab, setActiveTab] = useState('Description');
-console.log(rawHtml)
+ 
   return (
       <div className="container mx-auto mt-16">
          <div className="flex border-b border-gray-200 -700">

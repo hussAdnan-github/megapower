@@ -1,5 +1,5 @@
- 
- 
+
+
 import { use } from 'react';
 // import { useState } from 'react';
 import Link from 'next/link';
@@ -7,9 +7,10 @@ import Image from 'next/image';
 import { baseUrl } from '@/context/baseURL';
 import { getLocale } from 'next-intl/server';
 import TabProduct from '@/components/TabProduct';
+import Imagesproduct from '@/components/Imagesproduct';
 
 async function getProduct(id) {
-//  console.log(id)
+  //  console.log(id)
   const res = await fetch(`${baseUrl}/products/products/${id}`);
 
   if (!res.ok) {
@@ -17,18 +18,27 @@ async function getProduct(id) {
   }
 
   return res.json();
-} 
- 
+}
+async function getImages(id) {
+  const resImg = await fetch(`${baseUrl}products/product-images/?product=${id}`);
+
+  if (!resImg.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  return resImg.json();
+}
+
 export default async function ProductDetailPage({ params }) {
-  
-    const productId = params.productId;
-   
+
+
+
+  const productId = params.productId;
+
   const product = await getProduct(productId);
-   const locale = await getLocale();
-
-  // const [activeImage, setActiveImage] = useState(product?.images[0]);
-  // const [activeTab, setActiveTab] = useState('Description');
-
+  const images = await getImages(productId);
+   
+  const locale = await getLocale();
   // if (!product) {
   //   return (
   //     <div className="flex justify-center items-center h-screen text-3xl font-bold">
@@ -42,29 +52,7 @@ export default async function ProductDetailPage({ params }) {
       {/* Product Detail Section */}
       <section className="  transition-colors duration-300 py-20 px-5 md:px-10">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        
-          <div className="space-y-6">
-            <div className="relative w-full aspect-square  dark-bg-li rounded-lg shadow-md flex items-center justify-center overflow-hidden">
-              <Image src={product['data'].image} alt={`${locale == 'ar' ? product.name_ar : product.name_en}`} layout="fill" objectFit="contain" />
-            </div>
-            {/* <div className="flex justify-center gap-4">
-              {product.images.map((img, index) => (
-                <Image
-                  key={index}
-                  src={img}
-                  alt={`Thumbnail ${index + 1}`}
-                  width={100}
-                  height={100}
-                  className={`cursor-pointer rounded-md border-2 transition-transform duration-300 transform hover:scale-105 ${
-                    activeImage === img ? 'border-blue-600 shadow-lg' : 'border-transparent'
-                  }`}
-                  onClick={() => setActiveImage(img)}
-                />
-              ))}
-            </div> */}
-          </div>
-
-         
+          <Imagesproduct images={images['data']['result']} name={`${locale == 'ar' ? product.name_ar : product.name_en}`} />
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold    ">{`${locale == 'ar' ? product['data'].name_ar : product['data'].name_en}`}</h1>
             <p className="text-xl text-blue-600 font-semibold">{`${locale == 'ar' ? product['data'].short_description_ar : product['data'].short_description_en}`}</p>
@@ -84,9 +72,7 @@ export default async function ProductDetailPage({ params }) {
             </p> */}
           </div>
         </div>
-
-        
-       <TabProduct rawHtml={locale == 'ar' ? product['data'].description_ar : product['data'].description_en}/>
+        <TabProduct rawHtml={locale == 'ar' ? product['data'].description_ar : product['data'].description_en} />
       </section>
     </>
   );

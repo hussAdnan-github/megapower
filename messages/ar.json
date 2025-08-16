@@ -10,12 +10,8 @@
     "subTitle": "أنظمة تخزين بطاريات LiFePO4 موثوقة وآمنة.",
     "btn": "اكتشف المنتجات"
   },
-  "Layout": {
-    "whytitle": "لماذا تختار ميجا باور؟",
-    "Productstitle": "منتجات مميزة",
-    "Projectstitle": "مشاريعنا المنفذة",
-    "Newstitle": "آخر الأخبار",
-    "confidencetitle": "جودة وثقة معتمدة",
+  "Layout": { 
+    
     "btnProducts": "عرض كل المنتجات",
     "btnProjects": "عرض كل المشاريع",
     "btnNews": "عرض كل الأخبار",
@@ -23,12 +19,21 @@
     "ContactUsBtn": " ابدأ الآن"
   },
    "Headerpage": {
+    "whytitle": "لماذا تختار ميجا باور؟",
+    "Productstitle": "منتجات مميزة",
+    "Projectstitle": "مشاريعنا المنفذة",
+    "Newstitle": "آخر الأخبار",
+    "confidencetitle": "جودة وثقة معتمدة",
     "titleproducts": "طاقة نقية لمستقبل مشرق",
     "subTitleproducts": "أنظمة تخزين بطاريات LiFePO4 موثوقة وآمنة.",
     "titleProjects": "قصص نجاحنا",
     "subTitleProjects": "شاهد كيف تُحدث ميجا باور ثورة في استخدام الطاقة في المنطقة.",
     "titleNews": "الأخبار والمقالات",
-    "subTitleNews": "ابق على اطلاع بآخر أخبار الشركة وفعالياتها ومقالاتها التقنية."
-  
+    "subTitleNews": "ابق على اطلاع بآخر أخبار الشركة وفعالياتها ومقالاتها التقنية.",
+    "btnprojects": "شاهد دراسة الحالة ",
+    "mainbtnprojects": "  شاهد جميع المشاريع ",
+    "show": "  اكتشف المزيد ",
+    "show_2": "  اقرأ المزيد"
   }
+   
 }

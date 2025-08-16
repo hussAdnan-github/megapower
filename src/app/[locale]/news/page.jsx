@@ -1,149 +1,119 @@
 // src/app/news/page.js
 
-'use client';
+// 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// import Link from 'next/link';
+// import Image from 'next/image';
+// import { useState } from 'react';
+// import { motion, AnimatePresence } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
 import Headerpage from '@/components/Headerpage';
+import { baseUrl } from '@/context/baseURL';
+import PaginationControls from '@/components/PaginationControls';
+import FillterNews from '@/components/FillterNews';
+const ITEMS_PER_PAGE = 10;
 
-const articles = [
-  {
-    id: 'new-residential-series',
-    title: 'MEGA POWER تطلق سلسلة سكنية جديدة',
-    date: 'أكتوبر 25, 2024',
-    category: 'أخبار الشركة',
-    categorySlug: 'company-news',
-    imageSrc: '/assets/b1.jpg',
-    summary: 'يسعدنا أن نعلن عن إطلاق سلسلة HomeStack™ الجديدة، المصممة لتمكين أصحاب المنازل بحلول تخزين طاقة موثوقة.',
-  },
-  {
-    id: 'lifepo4-vs-li-ion',
-    title: 'فهم LiFePO4 مقابل أيون الليثيوم: أيهما أكثر أمانًا؟',
-    date: 'أكتوبر 22, 2024',
-    category: 'مقالات تقنية',
-    categorySlug: 'tech-articles',
-    imageSrc: '/assets/b1.jpg',
-    summary: 'تحليل معمق للكيمياء وميزات الأمان التي تجعل LiFePO4 الخيار الأفضل لتخزين الطاقة المنزلية.',
-  },
-  {
-    id: 'riyadh-expo-2024',
-    title: 'انضموا إلينا في معرض الرياض للطاقة الذكية 2024',
-    date: 'أكتوبر 18, 2024',
-    category: 'فعاليات',
-    categorySlug: 'events',
-    imageSrc: '/assets/b1.jpg',
-    summary: 'ستعرض MEGA POWER أحدث ابتكاراتها في المعرض القادم. تفضلوا بزيارتنا في الجناح رقم 123.',
-  },
-];
+async function getNews(page) {
+  const res = await fetch(`${baseUrl}news/news-articles/?page=${page}`,
+    { cache: 'no-store' });
 
-const categories = [
-  { slug: 'all', name: 'الكل' },
-  { slug: 'company-news', name: 'أخبار الشركة' },
-  { slug: 'events', name: 'فعاليات' },
-  { slug: 'tech-articles', name: 'مقالات تقنية' },
-];
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+  return res.json();
+}
+async function getNewsArticles() {
+  const res = await fetch(`${baseUrl}news/type-articles/`,
+     );
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
 
-export default function NewsPage() {
-       
-  const [activeCategory, setActiveCategory] = useState('all');
+  return res.json();
+}
+// const articles = [
+//   {
+//     id: 'new-residential-series',
+//     title: 'MEGA POWER تطلق سلسلة سكنية جديدة',
+//     date: 'أكتوبر 25, 2024',
+//     category: 'أخبار الشركة',
+//     categorySlug: 'company-news',
+//     imageSrc: '/assets/b1.jpg',
+//     summary: 'يسعدنا أن نعلن عن إطلاق سلسلة HomeStack™ الجديدة، المصممة لتمكين أصحاب المنازل بحلول تخزين طاقة موثوقة.',
+//   },
+//   {
+//     id: 'lifepo4-vs-li-ion',
+//     title: 'فهم LiFePO4 مقابل أيون الليثيوم: أيهما أكثر أمانًا؟',
+//     date: 'أكتوبر 22, 2024',
+//     category: 'مقالات تقنية',
+//     categorySlug: 'tech-articles',
+//     imageSrc: '/assets/b1.jpg',
+//     summary: 'تحليل معمق للكيمياء وميزات الأمان التي تجعل LiFePO4 الخيار الأفضل لتخزين الطاقة المنزلية.',
+//   },
+//   {
+//     id: 'riyadh-expo-2024',
+//     title: 'انضموا إلينا في معرض الرياض للطاقة الذكية 2024',
+//     date: 'أكتوبر 18, 2024',
+//     category: 'فعاليات',
+//     categorySlug: 'events',
+//     imageSrc: '/assets/b1.jpg',
+//     summary: 'ستعرض MEGA POWER أحدث ابتكاراتها في المعرض القادم. تفضلوا بزيارتنا في الجناح رقم 123.',
+//   },
+// ];
 
-  const filteredArticles = activeCategory === 'all'
-    ? articles
-    : articles.filter(article => article.categorySlug === activeCategory);
-const t = useTranslations('Headerpage');
+// const categories = [
+//   { slug: 'all', name: 'الكل' },
+//   { slug: 'company-news', name: 'أخبار الشركة' },
+//   { slug: 'events', name: 'فعاليات' },
+//   { slug: 'tech-articles', name: 'مقالات تقنية' },
+// ];
+
+// const containerVariants = {
+//   hidden: { opacity: 0 },
+//   show: {
+//     opacity: 1,
+//     transition: {
+//       staggerChildren: 0.1,
+//     },
+//   },
+// };
+
+// const itemVariants = {
+//   hidden: { opacity: 0, y: 20 },
+//   show: { opacity: 1, y: 0 },
+// };
+
+export default async function NewsPage({ searchParams }) {
+  const page = Number(searchParams['page'] ?? 1);
+  const news = await getNews(page);
+  const articles = await getNewsArticles();
+ 
+  const totalnews = news['data'].count;
+  const totalPages = Math.ceil(totalnews / ITEMS_PER_PAGE);
+
+  // console.log(totalnews)
+
+  // 
+
+  // const filteredArticles = activeCategory === 'all'
+  //   ? articles
+  //   : articles.filter(article => article.categorySlug === activeCategory);
+  // const t = useTranslations('Headerpage');
   return (
     <>
-   
-      <Headerpage title={t('titleNews')} subTitle={t('subTitleNews')}/>
-     
+
+      {/* <Headerpage title={t('titleNews')} subTitle={t('subTitleNews')}/> */}
+
       {/* News Listing Section */}
       <section className="  transition-colors duration-300 py-20 px-5 md:px-10">
-        <div className="container mx-auto">
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((cat) => (
-              <button
-                key={cat.slug}
-                onClick={() => setActiveCategory(cat.slug)}
-                className={`py-2 px-6 rounded-full font-semibold transition-colors duration-300 ${
-                  activeCategory === cat.slug
-                    ? 'bg-blue-600 text-white hover:bg-blue-700'
-                    : ' dark-bg-li  border rounded hover:bg-gray-200 dark:hover:bg-gray-600'
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Animated Articles Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              animate="show"
-            >
-              {filteredArticles.length > 0 ? (
-                filteredArticles.map((article) => (
-                  <motion.article
-                    key={article.id}
-                    className=" dark-bg-li rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
-                    variants={itemVariants}
-                    layout
-                  >
-                    <Link href={`/news/${article.id}`} className="block">
-                      <div className="relative h-60 w-full">
-                        <Image 
-                          src={article.imageSrc} 
-                          alt={article.title} 
-                          layout="fill"
-                          objectFit="cover"
-                          className="transition-transform duration-500 hover:scale-105"
-                        />
-                      </div>
-                    </Link>
-                    <div className="p-6">
-                      <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
-                        <span className="  py-1 px-3 rounded-full font-semibold text-xs">{article.category}</span>
-                        <span>{article.date}</span>
-                      </div>
-                      <h3 className="text-xl font-bold   mb-2">
-                        <Link href={`/news/${article.id}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-                          {article.title}
-                        </Link>
-                      </h3>
-                      <p className=" ">{article.summary}</p>
-                    </div>
-                  </motion.article>
-                ))
-              ) : (
-                <div className="col-span-full text-center text-xl text-gray-600 dark:text-gray-400">
-                  لا توجد مقالات في هذه الفئة.
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+         <FillterNews articles={articles['data']['result']}  news={news['data']['result']}/>
+        <PaginationControls
+          nameApi={'?page='}
+          currentPage={page}
+          totalPages={totalPages}
+        />
       </section>
     </>
   );

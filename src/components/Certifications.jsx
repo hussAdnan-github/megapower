@@ -1,5 +1,7 @@
  
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
+import MainTitle from './MainTitle';
 
 const certifications = [
   { src: "/assets/WERCS.jpg", alt: "ISO 9001" },
@@ -9,14 +11,14 @@ const certifications = [
   { src: "/assets/UL1642.jpg", alt: "UL Certified" },
 ];
 
-const Certifications = () => {
+const Certifications = async () => {
+    const t = await getTranslations('Headerpage');
+
   return (
     <section className="    transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center  mb-18  ">
-           جودة  <span className=" me-2">وثقة</span>معتمدة
-           {/* جودة  <span className="text-blue-600 me-2">وثقة</span>معتمدة */}
-        </h2>
+                <MainTitle title=    {t('whytitle')} />
+
         <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
           {certifications.map((cert, index) => (
             <div key={index} className="flex-shrink-0 group">

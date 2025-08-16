@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import MainTitle from "./MainTitle";
 
 const features = [
@@ -22,11 +23,13 @@ const features = [
     description: "نظم إدارة البطارية (BMS) تضمن الأداء الأمثل وتحمي من التلف.",
   },
 ];
-const WhyChooseUs = () => {
-  return (
+const WhyChooseUs = async () => {
+  const t = await getTranslations('Headerpage');
+
+  return ( 
     <section className="    dark-bg-li    transition-colors duration-300 py-30 px-5 md:px-10">
       <div className="container mx-auto">
-        <MainTitle title={'  لماذا تختار ميجا  ؟'}/>
+        <MainTitle title=    {t('whytitle')} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="flex flex-col items-center text-center p-6     rounded-lg shadow-md transition-shadow hover:shadow-xl">

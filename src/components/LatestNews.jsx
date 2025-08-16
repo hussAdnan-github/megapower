@@ -1,60 +1,45 @@
  
 import Link from 'next/link';
 import Image from 'next/image';
+import { getHome } from '@/context/api';
+import { getLocale, getTranslations } from 'next-intl/server';
+import MainTitle from './MainTitle';
 
-const newsArticles = [
-  {
-    imageSrc: "/assets/1.png",
-    date: "14 أغسطس، 2025",
-    title: "ميجا باور تطلق الجيل الجديد من أنظمة تخزين الطاقة",
-    link: "#"
-  },
-  {
-    imageSrc: "/assets/1.png",
-    date: "10 أغسطس، 2025",
-    title: "توسيع شراكاتنا الإقليمية لتغطية أسواق جديدة",
-    link: "#"
-  },
-  {
-    imageSrc: "/assets/1.png",
-    date: "05 أغسطس، 2025",
-    title: "نصائح لاختيار نظام تخزين الطاقة الأنسب لمنزلك",
-    link: "#"
-  },
-];
-
-const LatestNews = () => {
+ 
+const LatestNews = async() => {
+    const getdataprojects = await getHome();
+  const locale = await getLocale();
+  const t = await getTranslations('Headerpage');
+  ;
   return (
     <section className="    transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center     mb-12">
-          {/* آخر  <span className="text-blue-600">الأخبار</span> */}
-          آخر  <span className=" ">الأخبار</span>
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {newsArticles.map((article, index) => (
+               <MainTitle title=    {t('Newstitle')} />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
+          {getdataprojects['data']['news'].map((article, index) => (
             <div key={index} className=" dark-bg-li  rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
-              <Link href={article.link} className="block overflow-hidden h-52">
+              <div   className="block overflow-hidden h-52">
                 <Image
-                  src={article.imageSrc}
-                  alt={article.title}
+                  src={article.image}
+                  alt={`${locale == 'ar' ? article.title_ar : article.title_en}`}
                   width={600}
                   height={400}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
-              </Link>
+              </div>
               <div className="p-6 flex-grow flex flex-col">
-                <span className="text-sm  mb-2">{article.date}</span>
+                {/* <span className="text-sm  mb-2">{article.date}</span> */}
                 <h3 className="text-xl font-bold    mb-4">
-                  <Link href={article.link} className="hover:text-blue-600 transition-colors duration-300">
-                    {article.title}
-                  </Link>
+                  <div  className="hover:text-blue-600 transition-colors duration-300">
+                   {`${locale == 'ar' ? article.title_ar : article.title_en}`}
+                  </div>
                 </h3>
                 <Link
-                  href={article.link}
+                  href={`/news/${article.id}`} 
                   className="mt-auto inline-block text-blue-600   hover:underline font-semibold"
                 >
-                  اقرأ المزيد <i className="fas fa-arrow-left"></i>
+                 {t('show_2')} <i className="fas fa-arrow-left"></i>
                 </Link>
               </div>
             </div>

@@ -1,26 +1,23 @@
 // next.config.mjs
-import createNextIntlPlugin from 'next-intl/plugin'; // استخدم import
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin(
-  // المسار إلى ملف إعداد الطلب الخاص بك (src/i18n.js)
-  // إذا كان في المسار الافتراضي، يمكنك ترك هذا فارغًا: createNextIntlPlugin()
-  // './src/i18n.js'
-);
+const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
- reactStrictMode: true, // Or whatever other configs you have
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
-        protocol: 'https', // Or 'https' if your image source supports it
+        protocol: 'https',
         hostname: 'megapowers.pythonanywhere.com',
-        port: '', // Optional: specify if it's a non-standard port
-        pathname: '/media/products/**', // Optional: be more specific if needed, e.g., '/Resourse/AllFiles/**'
+        port: '',
+        // هذا هو التعديل. يسمح الآن بأي مسار على هذا النطاق
+        pathname: '/**',
       },
-      // You can add more remote patterns here for other domains
+      // يمكنك إضافة نطاقات أخرى هنا إذا احتجت
     ],
   },
 };
 
-export default withNextIntl(nextConfig); // استخدم export default في ESM
+export default withNextIntl(nextConfig);
