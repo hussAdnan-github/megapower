@@ -21,7 +21,8 @@
  
   },
    "Headerpage": {
-     "whytitle": "Why Choose MEGA POWER?",
+    "certificationstitle": "Certified quality and trust",
+
     "Productstitle": "Featured Products",
     "Projectstitle": "Our Executed Projects",
     "Newstitle": "Latest News",
@@ -36,6 +37,22 @@
     "mainbtnprojects": "View all projects ",
     "show": "  Find out more",
     "show_2": "  Read more"
-  } 
+  } , "why":{
+     "whytitle": "Why Choose MEGA POWER?",
+    "whyTitle_1": "Safety and reliability",
+    "whyDes_1": "We use high quality LiFePO4 battery cells to ensure maximum safety.",
+    "whyTitle_2": "High efficiency",
+    "whyDes_2": "Our systems provide exceptional charging and discharging efficiency, increasing energy savings.",
+     "whyTitle_4": "Environmentally friendly",
+    "whyDes_4": "Battery management systems (BMS) ensure optimal performance and protect against damage.",
+    "whyTitle_3": "advanced technology",
+    "whyDes_3": "Clean and sustainable energy solutions that reduce carbon footprint."
+   
+  },
+  "Pagination": {
+    "next": "left",
+    "prev": "right"
+ 
+  }
    
 }

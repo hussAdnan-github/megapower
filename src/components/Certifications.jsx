@@ -17,7 +17,7 @@ const Certifications = async () => {
   return (
     <section className="    transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
-                <MainTitle title=    {t('whytitle')} />
+                <MainTitle title=    {t('certificationstitle')} />
 
         <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
           {certifications.map((cert, index) => (

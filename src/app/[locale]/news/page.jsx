@@ -11,7 +11,7 @@ import Headerpage from '@/components/Headerpage';
 import { baseUrl } from '@/context/baseURL';
 import PaginationControls from '@/components/PaginationControls';
 import FillterNews from '@/components/FillterNews';
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 1;
 
 async function getNews(page) {
   const res = await fetch(`${baseUrl}news/news-articles/?page=${page}`,
@@ -86,12 +86,17 @@ async function getNewsArticles() {
 // };
 
 export default async function NewsPage({ searchParams }) {
-  const page = Number(searchParams['page'] ?? 1);
-  const news = await getNews(page);
+  const currentPage = Number(searchParams['page'] ?? 1);
+  const news = await getNews(currentPage);
   const articles = await getNewsArticles();
  
+
+
   const totalnews = news['data'].count;
   const totalPages = Math.ceil(totalnews / ITEMS_PER_PAGE);
+
+     const hasNextPage = news['data'].next !== null;
+  const hasPrevPage = news['data'].previous !== null;
 
   // console.log(totalnews)
 
@@ -109,11 +114,13 @@ export default async function NewsPage({ searchParams }) {
       {/* News Listing Section */}
       <section className="  transition-colors duration-300 py-20 px-5 md:px-10">
          <FillterNews articles={articles['data']['result']}  news={news['data']['result']}/>
-        <PaginationControls
-          nameApi={'?page='}
-          currentPage={page}
-          totalPages={totalPages}
-        />
+          <PaginationControls
+                nameApi={'/news?'}
+                currentPage={currentPage}
+                totalPages={totalPages}
+                hasNextPage={hasNextPage}
+                hasPrevPage={hasPrevPage}
+              />
       </section>
     </>
   );

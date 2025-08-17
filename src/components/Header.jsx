@@ -35,7 +35,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href="/projects" className=" font-semibold transition-colors">
+            <Link href="/products" className=" font-semibold transition-colors">
              {t('Products')}
             </Link>
           </li>

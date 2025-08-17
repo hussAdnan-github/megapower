@@ -5,7 +5,7 @@ import { baseUrl } from '@/context/baseURL';
 
 import { getLocale } from 'next-intl/server';
 import PaginationControls from '@/components/PaginationControls';
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 1;
 // const products = [
 //   {
 //     id: 'mp-h5',
@@ -52,7 +52,7 @@ const ITEMS_PER_PAGE = 10;
 
 async function getProducts(page) {
   const res = await fetch(`${baseUrl}/products/products/?page=${page}`,
-     { cache: 'no-store' });
+    { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -61,13 +61,16 @@ async function getProducts(page) {
   return res.json();
 }
 
-export default async function ProductsPage({searchParams}) {
-   const page = Number(searchParams['page'] ?? 1);
- 
-  const products = await getProducts(page); 
+export default async function ProductsPage({ searchParams }) {
+  const currentPage = Number(searchParams['page'] ?? 1);
+
+  const products = await getProducts(currentPage);
   const totalProducts = products['data'].count;
-   const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE);
-     console.log(totalPages)
+  const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE);
+
+
+  const hasNextPage = products['data'].next !== null;
+  const hasPrevPage = products['data'].previous !== null;
 
   const locale = await getLocale();
 
@@ -115,8 +118,8 @@ export default async function ProductsPage({searchParams}) {
                   />
                 </div>
                 <div className="p-6 text-center flex-grow flex flex-col">
-                  <h3 className="text-xl font-bold   mb-2">{`${locale == 'ar' ? product.name_ar : product.name_en}`}</h3>
-                  <p className="  flex-grow mb-4">{`${locale == 'ar' ? product.short_description_ar : product.short_description_en}`}</p>
+                  <h3 className="text-2xl font-bold   mb-2 text-start">{`${locale == 'ar' ? product.name_ar : product.name_en}`}</h3>
+                  <p className="  flex-grow mb-4 font-bold  text-start ">{`${locale == 'ar' ? product.short_description_ar : product.short_description_en}`}</p>
                   <Link
                     href={`/products/${product.id}`}
                     className={`mt-auto inline-block font-semibold py-3 px-6 rounded-full transition-colors duration-300 bg-blue-600 hover:bg-blue-700 text-white`}
@@ -128,11 +131,13 @@ export default async function ProductsPage({searchParams}) {
             ))}
           </div>
         </div>
-         <PaginationControls
-         nameApi={'/products?'}
-        currentPage={page}
-        totalPages={totalPages}
-      />
+        <PaginationControls
+          nameApi={'/products?'}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          hasNextPage={hasNextPage}
+          hasPrevPage={hasPrevPage}
+        />
       </section>
     </>
   );

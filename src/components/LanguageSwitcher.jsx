@@ -2,27 +2,32 @@
 
 'use client';
 
+import React from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { routing } from '@/i18n/routing';
 
-export default function LanguageSwitcher({ currentLocale }) {
+export default function LanguageSwitcher() {
+  const router = useRouter();
   const pathname = usePathname();
-  // استخراج المسار بدون اللغة
-  const pathWithoutLocale = pathname.replace(/^\/[a-zA-Z-]+/, '');
+  const locale = useLocale();
+
+  const otherLocale = locale === 'ar' ? 'en' : 'ar';
+
+  const handleClick = () => {
+    const segments = pathname.split('/');
+    segments[1] = otherLocale;
+    const newPathname = segments.join('/');
+    router.replace(newPathname);
+  };
 
   return (
-    <div className="flex gap-2 items-center">
-      {routing.locales.map(locale => (
-        <Link
-          key={locale}
-          href={`/${locale}${pathWithoutLocale}`}
-          className={`px-3 py-1 rounded border text-sm font-semibold transition-colors duration-200 ${locale === currentLocale ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800 hover:bg-blue-100'}`}
-        >
-          {locale.toUpperCase()}
-        </Link>
-      ))}
-    </div>
+    <button
+      onClick={handleClick}
+      className="px-3 py-2 border-2 text-xl rounded-full "
+    >
+      {otherLocale === 'ar' ? 'Ar' : 'En'}
+    </button>
   );
+ 
 }

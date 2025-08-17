@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import SafeHtmlRenderer from './SafeHtmlRenderer';
 
-export default function TabProduct({rawHtml}) {
+export default function TabProduct({rawHtml , documents  , locales}) {
   const [activeTab, setActiveTab] = useState('Description');
  
   return (
@@ -39,15 +39,15 @@ export default function TabProduct({rawHtml}) {
           )}
             {activeTab === 'Downloads' && (
               <ul className="space-y-4">
-                <li>asdsa</li>
-                {/* {product.downloads.map((download, index) => (
+               
+                {documents.map((download, index) => (
                   <li key={index}>
-                    <a href={download.link} download className="flex items-center gap-4 text-blue-600 dark:text-blue-400 hover:underline">
-                      <i className={`${download.icon} text-lg w-6 text-center`}></i>
-                      <span>{download.name}</span>
+                    <a href={locales == 'ar' ? download.file_ar : download.file_en} download className="flex items-center gap-4 text-blue-600 dark:text-blue-400 hover:underline">
+                      <i className={`  text-lg w-6 text-center`}></i>
+                       {locales == 'ar' ? download.file_ar : download.file_en}
                     </a>
                   </li>
-                ))} */}
+                ))}
               </ul>
             )}
           </div>  

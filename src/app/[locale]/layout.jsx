@@ -22,6 +22,7 @@ const {locale} = await params;
   return (
     <html lang={locale} dir={locale == 'en' ? 'ltr' : 'rtl'} suppressHydrationWarning>
       <body >
+        
         <ThemeProvider>
         <NextIntlClientProvider>
           <Header />

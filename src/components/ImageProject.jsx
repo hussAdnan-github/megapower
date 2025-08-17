@@ -12,30 +12,37 @@ import 'swiper/css/navigation';
 
 
 // import required modules
-import { Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 
 export default function ImageProject({ images, title }) {
-    console.log(images['data']['result'])
+  
     return (
         <>
             {/* <div className="flex gap-4 overflow-x-auto justify-center"> */}
-            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-                {images['data']['result'].map((img, index) => (
+            <Swiper 
+            navigation={true}
+                loop={true}
+                autoplay={{ delay: 2000, disableOnInteraction: false }}
+                modules={[Navigation, Autoplay]}
+            
+             className=" mySwiper">
+                {images.map((img, index) => (
                     <SwiperSlide key={index}>
-                        <Image
-                            src={img.image}
-                            alt={`${title} صورة المشروع ${index + 1}`}
-                            width={80}
-                            height={80}
-                            className={`cursor-pointer rounded-lg border-2 transition-transform duration-300 transform hover:scale-105 
-                 `}
-
-                        />
+                        <div className="flex justify-center items-center w-full h-full dark-bg-li">
+                            <div style={{ width: 1200, height: 450 }} className="flex items-center justify-center">
+                                    <Image
+                                        src={img.image}
+                                        alt={`${title} صورة المشروع ${index + 1}`}
+                                        width={1200}
+                                        height={450}
+                                        style={{ objectFit: 'fill', width: 1200, height: 450 }}
+                                        className=" cursor-pointer rounded-lg border-2 transition-transform duration-300 transform hover:scale-105"
+                                    />
+                            </div>
+                        </div>
                     </SwiperSlide>
                 ))}
-
-
             </Swiper>
             {/* </div> */}
 

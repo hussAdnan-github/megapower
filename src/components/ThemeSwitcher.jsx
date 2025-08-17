@@ -20,7 +20,7 @@ export default function ThemeSwitcher() {
   return (
     <button
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-      className="p-2 rounded-md bg-gray-200   text-gray-800  "
+      className="p-[10px] border-2 rounded-full "
     >
       {resolvedTheme === 'dark' ? '🌞' : '🌙'}
     </button>

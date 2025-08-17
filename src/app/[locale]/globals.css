@@ -3,18 +3,21 @@
  
  :root {
   --background-color_light: #ffffff;
-  --text-color: #111827;
+  --text-colors: #111827;
   --secondary-text-color: #4b5563;
  --background-color: #f8f9fa;
+ --backgroundCard-color: #e7f1ff;
 }
 
 html.dark {
   --background-color_light: #1e1e1e;
   --background-color: #121212;
-  --text-color: #e0e0e0;
+  --text-colors: #9b9696;
   --secondary-text-color: #a1a1aa;
-}
+  --backgroundCard-color: #2c3e50;
 
+}
+ 
 body {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -23,6 +26,12 @@ body {
  
 .dark-bg-li {
    background-color: var(--background-color_light); 
+}
+.textDark {
+  color: var(--text-colors);
+}
+.DarkCard {
+    background-color: var(--backgroundCard-color);
 }
  .swiper {
   width: 100%;
@@ -42,7 +51,12 @@ body {
 
 .swiper-slide img {
   display: block;
-  width: 100%;
-  height: 100%;
+ 
   object-fit: cover;
+}
+.swiper-button-prev{
+  right: 90px !important;
+}
+.swiper-button-next{
+  left: 90px !important;
 }
