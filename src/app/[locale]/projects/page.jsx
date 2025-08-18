@@ -78,7 +78,7 @@ export default async function ProjectsPage({ searchParams }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects['data']['result'].map((project) => (
 
-              <Link key={project.id} href={`projects/${project.id}`}>
+              <Link key={project.id}   href={`projects/${project.id}`}>
                 <div
 
                   className="dark-bg-li rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group flex flex-col"

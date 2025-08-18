@@ -5,11 +5,11 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#222222] text-gray-400   transition-colors duration-300">
+    <footer className="bg-[#222222] text-gray-400    transition-colors duration-300">
       <div className="container mx-auto px-5 md:px-10 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
           {/* العمود 1: الشعار والشعار الفرعي */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-center md:items-start">
             <Image
               src="/assets/mega-power-logo.png"
               alt="شعار"
@@ -25,7 +25,7 @@ const Footer = () => {
             </div>
           </div>
           {/* العمود 2: روابط سريعة */}
-          <div>
+          <div className='flex flex-col items-center md:items-start'>
             <h3 className="text-white text-lg font-semibold mb-6 relative after:absolute after:bottom-[-8px] after:right-0 after:h-0.5 after:w-10 after:bg-yellow-400">
               روابط سريعة
             </h3>
@@ -37,7 +37,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* العمود 3: الدعم */}
-          <div>
+          <div className='flex flex-col items-center md:items-start'>
             <h3 className="text-white text-lg font-semibold mb-6 relative after:absolute after:bottom-[-8px] after:right-0 after:h-0.5 after:w-10 after:bg-yellow-400">
               الدعم
             </h3>
@@ -48,7 +48,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* العمود 4: تواصل معنا */}
-          <div>
+          <div className='flex flex-col items-center md:items-start'>
             <h3 className="text-white text-lg font-semibold mb-6 relative after:absolute after:bottom-[-8px] after:right-0 after:h-0.5 after:w-10 after:bg-yellow-400">
               تواصل معنا
             </h3>

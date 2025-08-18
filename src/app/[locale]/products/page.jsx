@@ -9,27 +9,16 @@ import ProductList from '@/components/ProductList ';
 
 const ITEMS_PER_PAGE = 10;
 
-// 1. تعديل دالة getProducts لتكون أبسط وأكثر ذكاءً
 async function getProducts(page, department) {
-  // المسار الأساسي ثابت دائمًا
-  const endpoint = `${baseUrl}/products/products/`;
+   const res = await fetch(`${baseUrl}/products/products/?page=${page}`,
+     { cache: 'no-store' });
 
-  const params = new URLSearchParams({
-    page: page.toString(),
-    page_size: ITEMS_PER_PAGE.toString(),
-  });
-
-  // إذا كان هناك قسم محدد، أضفه كمعلمة
-  if (department) {
-    params.append('department', department);
+if (!res.ok) {
+    throw new Error('Failed to fetch data');
   }
 
-  const url = `${endpoint}?${params.toString()}`;
-  console.log("SERVER FETCHING:", url); // للتحقق من الرابط
-
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) { throw new Error('Failed to fetch products'); }
   return res.json();
+
 }
 
 async function getDepartments() {
@@ -64,11 +53,11 @@ export default async function ProductsPage({ searchParams }) {
       </section>
 
       <section className="transition-colors duration-300 py-20 px-5 md:px-10">
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-1 gap-12">
           
-          <FilterSidebar departments={departments} />
+          {/* <FilterSidebar departments={departments} /> */}
 
-          <ProductList initialProducts={products} department={currentDepartment} />
+          <ProductList initialProducts={products}   />
         </div>
         <PaginationControls
           nameApi={'/products?'}
