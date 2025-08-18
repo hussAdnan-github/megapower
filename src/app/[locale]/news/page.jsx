@@ -11,11 +11,18 @@ import Headerpage from '@/components/Headerpage';
 import { baseUrl } from '@/context/baseURL';
 import PaginationControls from '@/components/PaginationControls';
 import FillterNews from '@/components/FillterNews';
+import Link from 'next/link';
+import Image from 'next/image';
+import { getLocale } from 'next-intl/server';
 const ITEMS_PER_PAGE = 1;
 
-async function getNews(page) {
-  const res = await fetch(`${baseUrl}news/news-articles/?page=${page}`,
-    { cache: 'no-store' });
+async function getNews(page , typeArticle) {
+    let url = `${baseUrl}news/news-articles/?page=${page}`;
+
+     if (typeArticle) {
+    url += `&type_article=${typeArticle}`;
+  }
+   const res = await fetch(url, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -33,61 +40,11 @@ async function getNewsArticles() {
 
   return res.json();
 }
-// const articles = [
-//   {
-//     id: 'new-residential-series',
-//     title: 'MEGA POWER تطلق سلسلة سكنية جديدة',
-//     date: 'أكتوبر 25, 2024',
-//     category: 'أخبار الشركة',
-//     categorySlug: 'company-news',
-//     imageSrc: '/assets/b1.jpg',
-//     summary: 'يسعدنا أن نعلن عن إطلاق سلسلة HomeStack™ الجديدة، المصممة لتمكين أصحاب المنازل بحلول تخزين طاقة موثوقة.',
-//   },
-//   {
-//     id: 'lifepo4-vs-li-ion',
-//     title: 'فهم LiFePO4 مقابل أيون الليثيوم: أيهما أكثر أمانًا؟',
-//     date: 'أكتوبر 22, 2024',
-//     category: 'مقالات تقنية',
-//     categorySlug: 'tech-articles',
-//     imageSrc: '/assets/b1.jpg',
-//     summary: 'تحليل معمق للكيمياء وميزات الأمان التي تجعل LiFePO4 الخيار الأفضل لتخزين الطاقة المنزلية.',
-//   },
-//   {
-//     id: 'riyadh-expo-2024',
-//     title: 'انضموا إلينا في معرض الرياض للطاقة الذكية 2024',
-//     date: 'أكتوبر 18, 2024',
-//     category: 'فعاليات',
-//     categorySlug: 'events',
-//     imageSrc: '/assets/b1.jpg',
-//     summary: 'ستعرض MEGA POWER أحدث ابتكاراتها في المعرض القادم. تفضلوا بزيارتنا في الجناح رقم 123.',
-//   },
-// ];
-
-// const categories = [
-//   { slug: 'all', name: 'الكل' },
-//   { slug: 'company-news', name: 'أخبار الشركة' },
-//   { slug: 'events', name: 'فعاليات' },
-//   { slug: 'tech-articles', name: 'مقالات تقنية' },
-// ];
-
-// const containerVariants = {
-//   hidden: { opacity: 0 },
-//   show: {
-//     opacity: 1,
-//     transition: {
-//       staggerChildren: 0.1,
-//     },
-//   },
-// };
-
-// const itemVariants = {
-//   hidden: { opacity: 0, y: 20 },
-//   show: { opacity: 1, y: 0 },
-// };
-
 export default async function NewsPage({ searchParams }) {
   const currentPage = Number(searchParams['page'] ?? 1);
-  const news = await getNews(currentPage);
+    const selectedArticleType = searchParams['type_article'] ?? '';
+
+  const news = await getNews(currentPage , selectedArticleType);
   const articles = await getNewsArticles();
  
 
@@ -97,15 +54,8 @@ export default async function NewsPage({ searchParams }) {
 
      const hasNextPage = news['data'].next !== null;
   const hasPrevPage = news['data'].previous !== null;
+  const locale = await getLocale();
 
-  // console.log(totalnews)
-
-  // 
-
-  // const filteredArticles = activeCategory === 'all'
-  //   ? articles
-  //   : articles.filter(article => article.categorySlug === activeCategory);
-  // const t = useTranslations('Headerpage');
   return (
     <>
 
@@ -113,7 +63,43 @@ export default async function NewsPage({ searchParams }) {
 
       {/* News Listing Section */}
       <section className="  transition-colors duration-300 py-20 px-5 md:px-10">
-         <FillterNews articles={articles['data']['result']}  news={news['data']['result']}/>
+         <FillterNews articles={articles['data']['result']}   />
+
+         <div className="my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {news['data']['result'].map((article) => (
+            <div
+                    key={article.id}
+                    className=" dark-bg-li rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                    
+                  >
+                    <Link href={`/news/${article.id}`} className="block">
+                      <div className="relative h-60 w-full">
+                        <Image 
+                          src={article.image} 
+                          alt={`${locale == 'ar' ? article.title_ar : article.title_en}`} 
+                          layout="fill"
+                          objectFit="cover"
+                          className="transition-transform duration-500 hover:scale-105"
+                        />
+                      </div>
+                    </Link>
+                    <div className="p-6">
+                      <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+                        <span className="  text-xs font-bold    border-2 px-4 py-2   rounded-full">{`${locale == 'ar' ? article.title_ar : article.title_en}`}</span>
+                        <span>{article.created_at.split('T')[0]}</span>
+                      </div>
+                      <h3 className="text-xl font-bold   mb-2">
+                        <Link href={`/news/${article.id}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                        {`${locale == 'ar' ? article.name_type_article_ar : article.name_type_article_en}`}
+                        </Link>
+                      </h3>
+                      {/* <p className=" ">{article.type_article}</p> */}
+                    </div>
+                  </div>  
+                
+
+          ))}
+        </div>
           <PaginationControls
                 nameApi={'/news?'}
                 currentPage={currentPage}

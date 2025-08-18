@@ -1,135 +1,74 @@
+// المسار: app/products/page.jsx
 
-import Link from 'next/link';
-import Image from 'next/image';
 import { baseUrl } from '@/context/baseURL';
-
 import { getLocale } from 'next-intl/server';
 import PaginationControls from '@/components/PaginationControls';
-const ITEMS_PER_PAGE = 1;
-// const products = [
-//   {
-//     id: 'mp-h5',
-//     name: 'MEGA POWER MP-H5',
-//     description: 'نظام بطارية بسعة 5.12 كيلوواط ساعة، مثالي للاستخدام السكني وتخزين الطاقة الشمسية.',
-//     imageSrc: '/assets/1.png',
-//     category: 'residential',
-//     isComingSoon: false,
-//   },
-//   {
-//     id: 'mp-h15',
-//     name: 'MEGA POWER MP-H15',
-//     description: 'بطارية عالية السعة 15.36 كيلوواط ساعة للنسخ الاحتياطي الكامل للمنزل واستقلالية الطاقة.',
-//     imageSrc: '/assets/1.png',
-//     category: 'residential',
-//     isComingSoon: false,
-//   },
-//   {
-//     id: 'mp-c50',
-//     name: 'MEGA POWER MP-C50',
-//     description: 'حل بسعة 50 كيلوواط ساعة للشركات الصغيرة والعيادات والمكاتب. (قريباً)',
-//     imageSrc: '/assets/1.png',
-//     category: 'commercial',
-//     isComingSoon: true,
-//   },
-//   {
-//     id: 'mp-c0',
-//     name: 'MEGA POWER MP-C50',
-//     description: 'حل بسعة 50 كيلوواط ساعة للشركات الصغيرة والعيادات والمكاتب. (قريباً)',
-//     imageSrc: '/assets/1.png',
-//     category: 'commercial',
-//     isComingSoon: true,
-//   },
-//   {
-//     id: 'mp-50',
-//     name: 'MEGA POWER MP-C50',
-//     description: 'حل بسعة 50 كيلوواط ساعة للشركات الصغيرة والعيادات والمكاتب. (قريباً)',
-//     imageSrc: '/assets/1.png',
-//     category: 'commercial',
-//     isComingSoon: true,
-//   },
-//   // يمكن إضافة المزيد من المنتجات هنا
-// ];
+ 
+import FilterSidebar from '@/components/FilterSidebar';
+import ProductList from '@/components/ProductList ';
 
-async function getProducts(page) {
-  const res = await fetch(`${baseUrl}/products/products/?page=${page}`,
-    { cache: 'no-store' });
+const ITEMS_PER_PAGE = 10;
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
+// 1. تعديل دالة getProducts لتكون أبسط وأكثر ذكاءً
+async function getProducts(page, department) {
+  // المسار الأساسي ثابت دائمًا
+  const endpoint = `${baseUrl}/products/products/`;
+
+  const params = new URLSearchParams({
+    page: page.toString(),
+    page_size: ITEMS_PER_PAGE.toString(),
+  });
+
+  // إذا كان هناك قسم محدد، أضفه كمعلمة
+  if (department) {
+    params.append('department', department);
   }
 
+  const url = `${endpoint}?${params.toString()}`;
+  console.log("SERVER FETCHING:", url); // للتحقق من الرابط
+
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) { throw new Error('Failed to fetch products'); }
+  return res.json();
+}
+
+async function getDepartments() {
+  const res = await fetch(`${baseUrl}/products/departments/`, { cache: 'no-store' });
+  if (!res.ok) { throw new Error('Failed to fetch departments'); }
   return res.json();
 }
 
 export default async function ProductsPage({ searchParams }) {
-  const currentPage = Number(searchParams['page'] ?? 1);
+  const departmentsData = await getDepartments();
+  const departments = departmentsData?.data?.result || [];
 
-  const products = await getProducts(currentPage);
-  const totalProducts = products['data'].count;
+  const currentPage = Number(searchParams['page'] ?? 1);
+  const currentDepartment = searchParams['department'] || null;
+
+  // استدعاء الدالة الجديدة
+  const productsData = await getProducts(currentPage, currentDepartment);
+  const products = productsData?.data?.result || [];
+  const totalProducts = productsData?.data?.count || 0;
   const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE);
 
-
-  const hasNextPage = products['data'].next !== null;
-  const hasPrevPage = products['data'].previous !== null;
+  const hasNextPage = productsData?.data?.next !== null;
+  const hasPrevPage = productsData?.data?.previous !== null;
 
   const locale = await getLocale();
 
   return (
     <>
-      {/* Page Header */}
       <section className="bg-blue-600 text-white text-center py-20 px-5">
         <h1 className="text-4xl md:text-5xl font-bold mb-2">منتجاتنا</h1>
         <p className="text-lg">اكتشف حلول تخزين الطاقة الموثوقة لدينا.</p>
       </section>
 
-      {/* Products Listing Section */}
-      <section className="  transition-colors duration-300 py-20 px-5 md:px-10">
+      <section className="transition-colors duration-300 py-20 px-5 md:px-10">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-12">
-          {/* Filters Sidebar */}
-          <aside className="lg:col-span-1 p-6   rounded-xl shadow-lg h-fit sticky top-28">
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4  ">البحث عن المنتجات </h3>
-              <div className="relative">
-                <input type="text" placeholder="مثال: MP-H5" className="w-full py-3 px-4 rounded-lg border border-gray-300   focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4  ">فئات المنتجات</h3>
-              <ul className="space-y-2">
-                <li><button className="w-full text-right py-2 px-4 rounded-lg bg-blue-600 text-white font-semibold transition-colors duration-200">كل المنتجات</button></li>
-                <li><button className="w-full text-right py-2 px-4 rounded-lg     transition-colors duration-200">السلسلة السكنية</button></li>
-                <li><button className="w-full text-right py-2 px-4 rounded-lg     transition-colors duration-200">السلسلة التجارية</button></li>
-              </ul>
-            </div>
-          </aside>
+          
+          <FilterSidebar departments={departments} />
 
-          {/* Products Grid */}
-          <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-8">
-            {products['data']['result'].map((product) => (
-              <div key={product.id} className="dark-bg-li   rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
-                <div className="p-4   flex justify-center items-center h-60">
-                  <Image
-                    src={product.image}
-                    alt={`${locale == 'ar' ? product.name_ar : product.name_en}`}
-                    width={250}
-                    height={250}
-                    className="object-contain max-h-full"
-                  />
-                </div>
-                <div className="p-6 text-center flex-grow flex flex-col">
-                  <h3 className="text-2xl font-bold   mb-2 text-start">{`${locale == 'ar' ? product.name_ar : product.name_en}`}</h3>
-                  <p className="  flex-grow mb-4 font-bold  text-start ">{`${locale == 'ar' ? product.short_description_ar : product.short_description_en}`}</p>
-                  <Link
-                    href={`/products/${product.id}`}
-                    className={`mt-auto inline-block font-semibold py-3 px-6 rounded-full transition-colors duration-300 bg-blue-600 hover:bg-blue-700 text-white`}
-                  >
-                    عرض التفاصيل
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ProductList initialProducts={products} department={currentDepartment} />
         </div>
         <PaginationControls
           nameApi={'/products?'}
