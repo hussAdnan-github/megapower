@@ -14,7 +14,7 @@ export default function PaginationControls({ nameApi, currentPage, totalPages, h
 
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-  console.log(pageNumbers)
+   
 
 
   return (

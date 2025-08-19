@@ -21,6 +21,7 @@ export default function ImageProject({ images, title }) {
         <>
             {/* <div className="flex gap-4 overflow-x-auto justify-center"> */}
             <Swiper 
+                       data-aos="fade-up" data-aos-delay ="100"
             navigation={true}
                 loop={true}
                 autoplay={{ delay: 2000, disableOnInteraction: false }}

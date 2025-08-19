@@ -1,9 +1,6 @@
 
-
-import { use } from 'react';
-// import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+ 
+ 
 import { baseUrl } from '@/context/baseURL';
 import { getLocale } from 'next-intl/server';
 import TabProduct from '@/components/TabProduct';
@@ -57,24 +54,10 @@ export default async function ProductDetailPage({ params }) {
       <section className="  transition-colors duration-300 py-20 px-5 md:px-10">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <Imagesproduct images={images['data']['result']} name={`${locale == 'ar' ? product.name_ar : product.name_en}`} />
-          <div className="space-y-6">
+          <div data-aos="fade-right" data-aos-delay ="100" className="space-y-6">
             <h1 className="text-4xl md:text-4xl font-bold    ">{`${locale == 'ar' ? product['data'].name_ar : product['data'].name_en}`}</h1>
             <h2 className="text-4xl md:text-2xl font-bold    ">{`${locale == 'ar' ? product['data'].name_department_ar : product['data'].name_department_en}`}</h2>
             <p className="text-xl  textDark font-semibold">{`${locale == 'ar' ? product['data'].short_description_ar : product['data'].short_description_en}`}</p>
-            {/* <div className="flex flex-wrap gap-4 text-gray-600 dark:text-gray-400">
-              <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 py-2 px-4 rounded-full text-sm font-medium">
-                <i className="fas fa-battery-full text-blue-500"></i> {product.capacity}
-              </div>
-              <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 py-2 px-4 rounded-full text-sm font-medium">
-                <i className="fas fa-recycle text-blue-500"></i> {product.cycles}
-              </div>
-              <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 py-2 px-4 rounded-full text-sm font-medium">
-                <i className="fas fa-shield-alt text-blue-500"></i> {product.safety}
-              </div>
-            </div>
-            <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              {product.shortDesc}
-            </p> */}
           </div>
         </div>
         <TabProduct rawHtml={locale == 'ar' ? product['data'].description_ar : product['data'].description_en} documents = {documents['data']['result']} locales={locale}/>

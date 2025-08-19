@@ -36,9 +36,9 @@ async function getImages(id) {
 export default async function ProjectDetailPage({ params }) {
   const locale = await getLocale();
 
-  const projectId = params.projectId;
+  const projectId = (await params).projectId;
   const project = await getProject(projectId);
-   
+ 
   const images = await getImages(projectId);
  
 
@@ -50,16 +50,16 @@ export default async function ProjectDetailPage({ params }) {
     <>
       {/* Project Header */}
       <header className=" dark-bg-li text-center py-16   px-5">
-        <h1 className="text-4xl md:text-5xl font-bold  textDark mb-8">{`${locale == 'ar' ? project["data"].name_ar : project["data"].name_en}`}</h1>
+        <h1 className="text-4xl md:text-5xl font-bold  textDark mb-8">{`${locale == 'ar' ? project.name_ar : project.name_en}`}</h1>
         <div className="flex flex-wrap justify-center gap-4 text-sm mt-4">
-          <span className="flex items-center gap-2 text-xl"><i className="fas fa-map-marker-alt text-blue-600 text-2xl"></i> <h1 className='text-xl font-bold'>الموقع: </h1> {`${locale == 'ar' ? project["data"].location_ar : project["data"].location_en}`}</span>
+          <span className="flex items-center gap-2 text-xl"><i className="fas fa-map-marker-alt text-blue-600 text-2xl"></i> <h1 className='text-xl font-bold'>الموقع: </h1> {`${locale == 'ar' ? project.location_ar : project.location_en}`}</span>
           <div className="flex flex-row items-center justify-center   gap-2"><i className="fas fa-tag text-blue-600 text-2xl "></i> <h1 className='text-xl font-bold'>الفئة: </h1> <div className='flex gap-2 '>
-            {project["data"]["name_department"].map((depart, index) => (
+            {project["name_department"].map((depart, index) => (
               <span key={index} className="   text-xl  rounded-lg   uppercase  ">{`${locale == 'ar' ? depart.name_ar : depart.name_en}`}</span>
-            ))}
+            ))} 
           </div>
           </div>
-          <span className="flex items-center gap-2 text-xl"><i className="fas fa-calendar-alt text-blue-600 text-2xl"></i> <h1 className='text-xl font-bold'>تم الانتهاء: </h1> {project["data"].completed}</span>
+          <span className="flex items-center gap-2 text-xl"><i className="fas fa-calendar-alt text-blue-600 text-2xl"></i> <h1 className='text-xl font-bold'>تم الانتهاء: </h1> {project.completed}</span>
         </div>
       </header>
 
@@ -72,22 +72,25 @@ export default async function ProjectDetailPage({ params }) {
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           <div className="lg:col-span-2 space-y-8 prose dark:prose-invert max-w-none">
-            <SafeHtmlRenderer rawHtml={`${locale == 'ar' ?  project["data"].description_ar :  project["data"].description_en}`} className="html-content"/>
+            <SafeHtmlRenderer rawHtml={`${locale == 'ar' ?  project.description_ar :  project.description_en}`} className="mt-8" />
+
+          
           </div>
-
-
           <aside className="lg:col-span-1 ">
-            <div className="relative DarkCard  p-8 rounded-xl shadow-lg border-e-4 border-blue-600 space-y-6">
+            <div
+                       data-aos="fade-left" data-aos-delay ="100"
+            
+            className="relative DarkCard  p-8 rounded-xl shadow-lg border-e-4 border-blue-600 space-y-6">
               <i className="absolute right-4 fas fa-quote-left text-[#254773ad] text-4xl m-0"></i>
               <div className='mt-3'>
                  <p className="text-lg italic  ">
-                {`${locale == 'ar' ? project["data"].commit_owner_ar : project["data"].commit_owner_en}`}
+                {`${locale == 'ar' ? project.commit_owner_ar : project.commit_owner_en}`}
               </p>
               <div className="flex items-center gap-4 mt-6">
-                <Image src={project["data"].image} alt={`${locale == 'ar' ? project["data"].name_ar : project["data"].name_en}`} width={60} height={60} className="rounded-full border-2 border-blue-600" />
+                <Image src={project.image} alt={`${locale == 'ar' ? project.name_ar : project.name_en}`} width={60} height={60} className="rounded-full border-2 border-blue-600" />
                 <div>
-                  <span className="block font-bold  ">{`${locale == 'ar' ? project["data"].name_owner_ar : project["data"].name_owner_en}`} </span>
-                  <span className="block text-sm  ">{`${locale == 'ar' ? project["data"].attribute_ar : project["data"].attribute_en}`} </span>
+                  <span className="block font-bold  ">{`${locale == 'ar' ? project.name_owner_ar : project.name_owner_en}`} </span>
+                  <span className="block text-sm  ">{`${locale == 'ar' ? project.attribute_ar : project.attribute_en}`} </span>
                 </div>
               </div>
               </div>

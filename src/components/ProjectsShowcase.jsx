@@ -12,7 +12,7 @@ const ProjectsShowcase =async () => {
   const t = await getTranslations('Headerpage');
   
 
-
+  const delayIncrement = 100; 
   return (
     <section className="   transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
@@ -20,7 +20,9 @@ const ProjectsShowcase =async () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {getdataprojects['data']['projects'].map((project, index) => (
-            <div key={index} className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-video">
+            <div
+             data-aos="fade-up" data-aos-delay ={index * delayIncrement}
+            key={index} className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-video">
               <Image 
                 src={project.image} 
                 alt={`${locale == 'ar' ? project.name_ar : project.name_en}`}
@@ -32,7 +34,7 @@ const ProjectsShowcase =async () => {
                 <h3 className="text-xl font-bold text-white">sdfdsf</h3>
                 <p className="text-sm text-gray-200 mt-2 mb-4">{`${locale == 'ar' ? project.name_ar : project.name_en}`}</p>
                 <Link href={`/projects/${project.id}`} className="text-yellow-400 font-semibold hover:text-yellow-500 transition-colors duration-300">
-                   {t('show')} <i className="fas fa-arrow-left"></i>
+                   {t('show')}  
                 </Link>
               </div>
             </div>

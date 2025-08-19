@@ -13,7 +13,7 @@ const certifications = [
 
 const Certifications = async () => {
     const t = await getTranslations('Headerpage');
-
+  const delayIncrement = 100; 
   return (
     <section className="    transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
@@ -21,7 +21,9 @@ const Certifications = async () => {
 
         <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
           {certifications.map((cert, index) => (
-            <div key={index} className="flex-shrink-0 group">
+            <div
+             data-aos="fade-up" data-aos-delay ={index * delayIncrement}
+            key={index} className="flex-shrink-0 group">
               <Image
                 src={cert.src}
                 alt={cert.alt}

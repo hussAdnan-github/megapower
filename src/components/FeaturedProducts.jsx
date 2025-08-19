@@ -13,7 +13,7 @@ const  FeaturedProducts = async () => {
   const t = await getTranslations('Headerpage');
  
 
-  // console.log(getdataproducts['data']['products']);
+    const delayIncrement = 100; 
   return (
     <section className=" transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
@@ -21,7 +21,10 @@ const  FeaturedProducts = async () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {getdataproducts['data']['products'].map((product, index) => (
-            <div key={index} className="dark-bg-li   rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+            <div
+         data-aos="fade-up" data-aos-delay ={index * delayIncrement}
+            
+            key={index} className="dark-bg-li   rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
               <div className="p-4    flex justify-center items-center h-60">
                 <Image 
                   src={product.image} 

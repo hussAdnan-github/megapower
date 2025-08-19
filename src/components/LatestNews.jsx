@@ -10,7 +10,8 @@ const LatestNews = async() => {
     const getdataprojects = await getHome();
   const locale = await getLocale();
   const t = await getTranslations('Headerpage');
-  ;
+  
+    const delayIncrement = 100; 
   return (
     <section className="    transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
@@ -18,7 +19,9 @@ const LatestNews = async() => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
           {getdataprojects['data']['news'].map((article, index) => (
-            <div key={index} className=" dark-bg-li  rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
+            <div
+             data-aos="fade-up" data-aos-delay ={index * delayIncrement}
+            key={index} className=" dark-bg-li  rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
               <div   className="block overflow-hidden h-52">
                 <Image
                   src={article.image}
@@ -39,7 +42,7 @@ const LatestNews = async() => {
                   href={`/news/${article.id}`} 
                   className="mt-auto inline-block text-blue-600   hover:underline font-semibold"
                 >
-                 {t('show_2')} <i className="fas fa-arrow-left"></i>
+                 {t('show_2')}  
                 </Link>
               </div>
             </div>
