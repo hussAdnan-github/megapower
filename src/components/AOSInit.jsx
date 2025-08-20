@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-export const AOSInit = () => {
+export default function AOSInit () {
   useEffect(() => {
     AOS.init({
       easing: 'ease-out-quad',
@@ -13,4 +13,4 @@ export const AOSInit = () => {
   }, []);
 
   return null;
-};
+}

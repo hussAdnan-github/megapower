@@ -1,13 +1,14 @@
 
 
 import './globals.css';
-import { AOSInit } from '@/components/AOSInit'
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { ThemeProvider } from '@/providers/theme-provider';
+ 
+import AOSInit from '@/components/AOSInit';
+import ThemeProvider from '@/providers/theme-provider';
 
 
 

@@ -1,5 +1,6 @@
-import { getTranslations } from "next-intl/server";
+ 
 import MainTitle from "./MainTitle";
+import { useTranslations } from "next-intl";
 
 const features = [
   {
@@ -28,8 +29,8 @@ const features = [
       delay :"400"
   },
 ];
-const WhyChooseUs = async () => {
-  const t = await getTranslations('why');
+export default function WhyChooseUs () {
+  const t =  useTranslations('why');
  
   return ( 
     <section className="    dark-bg-li    transition-colors duration-300 py-30 px-5 md:px-10">
@@ -50,4 +51,4 @@ const WhyChooseUs = async () => {
     </section>
   );
 };
-export default WhyChooseUs;
+ 

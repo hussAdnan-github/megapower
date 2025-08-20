@@ -26,11 +26,11 @@ export default function ProductFilter({ department, searchTerm, setSearchTerm })
                 <div className='mt-6'>
                     <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">فئات المنتجات</h3>
                     <ul className="space-y-2">
-                        <li className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${!activeType ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>
+                        <li className={`px-5 py-3 text-sm font-medium rounded-lg  transition-colors ${!activeType ? 'bg-blue-600 text-white' : '    '}`}>
                             <Link href="/products">الكل</Link>
                         </li>
                         {department.map((dept) => (
-                            <li key={dept.id} className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${String(dept.id) === activeType ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}>
+                            <li key={dept.id} className={`px-5 py-3 text-sm font-medium rounded-lg transition-colors ${String(dept.id) === activeType ? 'bg-blue-600 text-white' : ' '}`}>
                                 <Link href={`products?department=${dept.id}`}>
                                     {locale === 'ar' ? dept.name_ar : dept.name_en}
                                 </Link>

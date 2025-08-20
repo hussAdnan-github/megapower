@@ -6,7 +6,7 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import MainTitle from './MainTitle';
 
  
-const ProjectsShowcase =async () => {
+export default async function ProjectsShowcase(){
    const getdataprojects = await getHome();
   const locale = await getLocale();
   const t = await getTranslations('Headerpage');
@@ -41,7 +41,7 @@ const ProjectsShowcase =async () => {
           ))}
         </div>
         <div className="text-center mt-12">
-          <Link href="/projects" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300">
+          <Link href="/projects" className="inline-block bg-yellow-400 text-[#111827] hover:bg-yellow-500 font-bold py-3 px-8 rounded-full transition-colors duration-300">
            {t('mainbtnprojects')} 
           </Link>
         </div>
@@ -50,4 +50,4 @@ const ProjectsShowcase =async () => {
   );
 };
 
-export default ProjectsShowcase;
+ 

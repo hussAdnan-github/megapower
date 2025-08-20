@@ -1,4 +1,4 @@
- 
+
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import MainTitle from './MainTitle';
@@ -11,19 +11,20 @@ const certifications = [
   { src: "/assets/UL1642.jpg", alt: "UL Certified" },
 ];
 
-const Certifications = async () => {
-    const t = await getTranslations('Headerpage');
-  const delayIncrement = 100; 
+
+export default async function Certifications   () {
+  const t = await getTranslations('Headerpage');
+  const delayIncrement = 100;
   return (
     <section className="    transition-colors duration-300 py-20 px-5 md:px-10">
       <div className="container mx-auto">
-                <MainTitle title=    {t('certificationstitle')} />
+        <MainTitle title={t('certificationstitle')} />
 
         <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
           {certifications.map((cert, index) => (
             <div
-             data-aos="fade-up" data-aos-delay ={index * delayIncrement}
-            key={index} className="flex-shrink-0 group">
+              data-aos="fade-up" data-aos-delay={index * delayIncrement}
+              key={index} className="flex-shrink-0 group">
               <Image
                 src={cert.src}
                 alt={cert.alt}
@@ -40,4 +41,3 @@ const Certifications = async () => {
   );
 };
 
-export default Certifications;

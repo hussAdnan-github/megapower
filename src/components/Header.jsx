@@ -11,7 +11,7 @@ import ThemeSwitcher from './ThemeSwitcher';
 import LanguageSwitcher from './LanguageSwitcher';
  
 
-const Header = () => {
+export default function Header () {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // حالة جديدة للقائمة المتجاوبة
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -101,4 +101,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+ 

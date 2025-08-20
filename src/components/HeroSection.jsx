@@ -1,11 +1,12 @@
+ 
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
-const HeroSection = () => {
+export default function HeroSection() {
   const t = useTranslations('Hero');
   return (
-    <section 
-   
+    <section
+
       className="h-[90vh]  flex flex-col justify-center items-center text-center   bg-cover bg-center"
       style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/b1.jpg')" }}
     >
@@ -23,4 +24,3 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;

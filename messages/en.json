@@ -54,6 +54,23 @@
     "next": "left",
     "prev": "right"
  
+  },
+   "Footer": {
+    "mainrHeader": "Your trusted partner for energy storage solutions. ",
+    "headerLink": "Quick Links",
+    "Home": "Home",
+    "Products": "Products",
+    "Contact": "Contact Us",
+    "Projects": "Projects",
+    "headerSupport": "Support",
+    "FAQ": "FAQ",
+    "Downloads": "Downloads",
+    "Warranty": "Warranty",
+    "headerContact": "Contact Us",
+    "city": "Chinese Georia",
+    "Copy": "© 2024 Mega Power. All rights reserved."
+   
+ 
   }
    
 }

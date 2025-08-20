@@ -6,11 +6,11 @@ import ProductList from '@/components/ProductList ';
 
 
 const ITEMS_PER_PAGE = 10;
-async function getProducts(page, department) {
+async function getProducts(page) {
   let url = `${baseUrl}/products/products/?page=${page}`;
-  if (department) {
-    url += `&department=${department}`;
-  }
+  // if (department) {
+  //   url += `&department=${department}`;
+  // }
   const res = await fetch(url, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -32,7 +32,7 @@ export default async function ProductsPage({ searchParams }) {
   const currentPage = Number(page || 1);
 
   const departmentsData = await getDepartments();
-  const productsData = await getProducts(currentPage, department || null);
+  const productsData = await getProducts(currentPage);
 
 
   const products = productsData?.data?.result || [];
@@ -45,11 +45,7 @@ export default async function ProductsPage({ searchParams }) {
 
   return (
     <>
-      {/* <section className="bg-blue-600 text-white text-center py-20 px-5">
-        <h1 data-aos="zoom-in" className="text-4xl md:text-5xl font-bold mb-2">منتجاتنا</h1>
-        <p data-aos="zoom-in" data-aos-delay ="200" className="text-lg">اكتشف حلول تخزين الطاقة الموثوقة لدينا.</p>
-      </section> */}
-
+    
       <section className="transition-colors duration-300 py-20 px-5 md:px-10">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-1 gap-12"> 
           <ProductList initialProducts={products} department={departmentsData['data']["result"]} />

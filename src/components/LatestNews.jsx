@@ -6,7 +6,7 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import MainTitle from './MainTitle';
 
  
-const LatestNews = async() => {
+export default async function LatestNews () {
     const getdataprojects = await getHome();
   const locale = await getLocale();
   const t = await getTranslations('Headerpage');
@@ -49,13 +49,12 @@ const LatestNews = async() => {
           ))}
         </div>
         <div className="text-center">
-          <Link href="/news" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300">
-            جميع الأخبار
+          <Link href="/news" className="inline-block bg-yellow-400 text-[#111827] hover:bg-yellow-500 font-bold py-3 px-8 rounded-full transition-colors duration-300">
+             {t('btnNews')}  
           </Link>
         </div>
       </div>
     </section>
   );
 };
-
-export default LatestNews;
+ 

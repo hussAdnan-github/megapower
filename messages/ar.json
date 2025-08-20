@@ -11,13 +11,14 @@
     "btn": "اكتشف المنتجات"
   },
   "Layout": {
+    "all": " الكل",
     "btnProducts": "عرض كل المنتجات",
     "btnProjects": "عرض كل المشاريع",
-    "btnNews": "عرض كل الأخبار",
     "ContactUs": "أدخل عنوان بريدك الإلكتروني",
     "ContactUsBtn": " ابدأ الآن"
   },
   "Headerpage": {
+    "btnNews": "عرض كل الأخبار",
 
     "certificationstitle": "جودة وثقة معتمدة",
     "date": "التاريخ",
@@ -50,6 +51,23 @@
   "Pagination": {
     "next": "التالي",
     "prev": "السابق"
+ 
+  },
+  "Footer": {
+    "mainrHeader": "شريكك الموثوق لحلول تخزين الطاقة.",
+    "headerLink": "روابط سريعة",
+    "Home": "الرئيسية",
+    "Products": "المنتجات",
+    "Contact": "اتصل بنا",
+    "Projects": "المشاريع",
+    "headerSupport": "الدعم",
+    "FAQ": "الأسئلة الشائعة",
+    "Downloads": "التنزيلات",
+    "Warranty": "الضمان",
+    "headerContact": "تواصل معنا",
+    "city": "جيوريا الصينية",
+    "Copy": "© ٢٠٢٤ ميجا باور. جميع الحقوق محفوظة."
+   
  
   }
 }

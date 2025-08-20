@@ -12,10 +12,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'megapowers.pythonanywhere.com',
         port: '',
-        // هذا هو التعديل. يسمح الآن بأي مسار على هذا النطاق
+      
         pathname: '/**',
       },
-      // يمكنك إضافة نطاقات أخرى هنا إذا احتجت
+     
     ],
   },
 };
