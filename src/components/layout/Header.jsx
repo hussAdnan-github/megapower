@@ -33,22 +33,22 @@ console.log(pathname)
         <ul className="hidden md:flex gap-10 items-center justify-between list-none">
           <li className="relative">
             {/* ٣. تطبيق فئة CSS النشطة بشكل شرطي */}
-            <Link href="/" className={` transition-colors ${pathname === '/ar' || pathname ==='/en' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
+            <Link href="/" className={` transition-colors ${pathname === '/ar' || pathname ==='/en' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'font-light'}`}>
               {t('home')}
             </Link>
           </li>
           <li>
-            <Link href="/products" className={` transition-colors ${pathname.startsWith('/ar/products') || pathname.startsWith('/en/products') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
+            <Link href="/products" className={` transition-colors ${pathname.startsWith('/ar/products') || pathname.startsWith('/en/products') ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'font-light'}`}>
              {t('Products')}
             </Link>
           </li>
           <li>
-            <Link href="/projects" className={` transition-colors ${pathname.startsWith('/ar/projects') || pathname.startsWith('/en/projects') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
+            <Link href="/projects" className={` transition-colors ${pathname.startsWith('/ar/projects') || pathname.startsWith('/en/projects') ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'font-light'}`}>
              {t('Projects')}
             </Link>
           </li>
           <li>
-            <Link href="/news" className={` transition-colors ${pathname.startsWith('/ar/news') || pathname.startsWith('/en/news') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
+            <Link href="/news" className={` transition-colors ${pathname.startsWith('/ar/news') || pathname.startsWith('/en/news') ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'font-light'}`}>
               {t('News')}
             </Link>
           </li>
@@ -78,22 +78,22 @@ console.log(pathname)
       <div className={`md:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-screen' : 'max-h-0'}`}>
         <ul className="flex flex-col items-center py-4">
           <li className="py-2">
-            <Link href="/" className={`block font-semibold ${pathname === '/ar' || pathname ==='/en' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
+            <Link href="/" className={`block  ${pathname === '/ar' || pathname ==='/en' ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'font-light'}`} onClick={toggleMobileMenu}>
               {t('home')}
             </Link>
           </li>
           <li className="py-2">
-            <Link href="/products" className={`block font-semibold ${pathname.startsWith('/ar/products') || pathname.startsWith('/en/products') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
+            <Link href="/products" className={`block  ${pathname.startsWith('/ar/products') || pathname.startsWith('/en/products') ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'font-light'}`} onClick={toggleMobileMenu}>
              {t('Products')}
             </Link>
           </li>
           <li className="py-2">
-            <Link href="/projects" className={`block font-semibold ${pathname.startsWith('/ar/projects') || pathname.startsWith('/en/projects') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
+            <Link href="/projects" className={`block  ${pathname.startsWith('/ar/projects') || pathname.startsWith('/en/projects') ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'font-light'}`} onClick={toggleMobileMenu}>
              {t('Projects')}
             </Link>
           </li>
           <li className="py-2">
-            <Link href="/news" className={`block font-semibold ${pathname.startsWith('/ar/news') || pathname.startsWith('/en/news') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
+            <Link href="/news" className={`block  ${pathname.startsWith('/ar/news') || pathname.startsWith('/en/news') ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'font-light'}`} onClick={toggleMobileMenu}>
               {t('News')}
             </Link>
           </li>

@@ -1,5 +1,6 @@
 
 
+import { Tajawal } from 'next/font/google'; 
 import './globals.css';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -11,6 +12,14 @@ import AOSInit from '@/components/layout/AOSInit';
 import ThemeProvider from '@/providers/theme-provider';
 import QueryPovider from '@/providers/query-povider';
 
+const tajawalFont = Tajawal({
+   subsets: ['arabic', 'latin'],  
+  weight: ['400', '700'], 
+});
+export const metadata = {
+  title: 'مشروعي الجديد',
+  description: 'تم إنشاؤه بواسطة Next.js',
+};
 export default async function RootLayout({ children, params }) {
 
 
@@ -20,9 +29,11 @@ export default async function RootLayout({ children, params }) {
   }
   return (
     <html lang={locale} dir={locale == 'en' ? 'ltr' : 'rtl'} suppressHydrationWarning>
-      <body >
         <AOSInit />
-        {/* <ThemeProvider> */}
+
+      <body className={`${tajawalFont.className}`}>
+
+        <ThemeProvider>
           <NextIntlClientProvider>
             <QueryPovider>
               <Header />
@@ -30,7 +41,7 @@ export default async function RootLayout({ children, params }) {
               <Footer />
             </QueryPovider>
           </NextIntlClientProvider>
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
       </body>
     </html>
   );
