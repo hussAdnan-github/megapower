@@ -8,10 +8,10 @@ import { useLocale } from 'next-intl';
 
 export default function ProductCard({ product, index }) {
     const locale = useLocale();
-  const delayIncrement = 100; 
+ 
     return (
         <div
-           data-aos="fade-up" data-aos-delay ={index * delayIncrement}  
+           data-aos="fade-up" data-aos-delay ="100" 
             className="dark-bg-li rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
             <div className="p-4 flex justify-center items-center h-60">
                 <Image

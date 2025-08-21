@@ -11,16 +11,18 @@
     "btn": "Discover Products"
   },
   "Layout": {
+    "all": " All",
    
-    "btnProducts": "View All Products",
+    "btnProducts": "View All Products", 
     "btnProjects": "View All Projects",
-    "btnNews": "View All News",
     "ContactUs": "Enter Your Email Address",
     "ContactUsBtn": "Get Started"
 
  
   },
    "Headerpage": {
+    "btnNews": "View All News",
+
     "certificationstitle": "Certified quality and trust",
     "date": "Date",
 

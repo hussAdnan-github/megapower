@@ -1,3 +1,23 @@
+export async function generateMetadata() {
+  return {
+    title: 'منتجات ميجا باور | حلول الطاقة المتقدمة',
+    description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من ميجا باور للمنازل والشركات.',
+    keywords: ['ميجا باور', 'بطاريات', 'طاقة', 'LiFePO4', 'منتجات الطاقة'],
+    openGraph: {
+      title: 'منتجات ميجا باور | حلول الطاقة المتقدمة',
+      description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من ميجا باور للمنازل والشركات.',
+      images: ['/assets/mega-power-logo.png'],
+      type: 'website',
+      locale: 'ar',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'منتجات ميجا باور | حلول الطاقة المتقدمة',
+      description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من ميجا باور للمنازل والشركات.',
+      images: ['/assets/mega-power-logo.png'],
+    },
+  };
+}
 import { baseUrl } from '@/context/baseURL';
 import { getLocale } from 'next-intl/server';
 import PaginationControls from '@/components/PaginationControls';
@@ -5,9 +25,8 @@ import ProductList from '@/components/ProductList ';
 
 
 
-const ITEMS_PER_PAGE = 10;
-async function getProducts(page) {
-  let url = `${baseUrl}/products/products/?page=${page}`;
+async function getProducts() {
+  let url = `${baseUrl}/products/products/`;
   // if (department) {
   //   url += `&department=${department}`;
   // }
@@ -32,31 +51,20 @@ export default async function ProductsPage({ searchParams }) {
   const currentPage = Number(page || 1);
 
   const departmentsData = await getDepartments();
-  const productsData = await getProducts(currentPage);
+  const productsData = await getProducts();
 
 
-  const products = productsData?.data?.result || [];
-  const totalProducts = productsData?.data?.count || 0;
-  const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE);
-
-  const hasNextPage = productsData?.data?.next !== null;
-  const hasPrevPage = productsData?.data?.previous !== null;
-
+  const products = productsData?.data || [];
+ 
 
   return (
     <>
     
       <section className="transition-colors duration-300 py-20 px-5 md:px-10">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-1 gap-12"> 
-          <ProductList initialProducts={products} department={departmentsData['data']["result"]} />
+          <ProductList initialProducts={products} department={departmentsData['data']["result"]} currentPage={currentPage}/>
         </div>
-        <PaginationControls
-          nameApi={'/products?'}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          hasNextPage={hasNextPage}
-          hasPrevPage={hasPrevPage}
-        />
+      
       </section>
     </>
   );

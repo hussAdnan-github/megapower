@@ -1,14 +1,16 @@
 'use client'
 
 
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import React, { useState } from 'react'
 
-export default function FillterNews({ articles }) {
+export default function FillterNews({ articles , locales }) {
 
   const searchParams = useSearchParams();
   const activeType = searchParams.get('type_article');
+  const t = useTranslations('Layout');
 
 
   return (
@@ -23,7 +25,7 @@ export default function FillterNews({ articles }) {
         className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${!activeType ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
           }`}
       >
-        الكل
+        {t('all')}
       </Link>
 
       {/* عرض أزرار الفلترة بناءً على أنواع المقالات */}
@@ -32,11 +34,11 @@ export default function FillterNews({ articles }) {
           key={articleType.id}
           href={`/news?type_article=${articleType.id}`}
           className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${String(articleType.id) === activeType
-              ? 'bg-blue-600 text-white' // Style for active filter
-              : 'bg-gray-200 text-gray-800 hover:bg-gray-300' // Style for inactive filter
+            ? 'bg-blue-600 text-white' // Style for active filter
+            : 'bg-gray-200 text-gray-800 hover:bg-gray-300' // Style for inactive filter
             }`}
         >
-          {articleType.name_ar}
+         {`${locales == 'ar' ? articleType.name_ar : articleType.name_en}`}
         </Link>
       ))}
     </div>

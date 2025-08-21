@@ -39,7 +39,8 @@ export default async function ProductDetailPage({ params }) {
 
 
 
-  const productId = params.productId;
+    const productId = (await params).productId;
+
 
   const product = await getProduct(productId);
   const images = await getImages(productId);

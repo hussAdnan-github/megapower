@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 import AOSInit from '@/components/AOSInit';
 import ThemeProvider from '@/providers/theme-provider';
 
-
+import { Metadata } from 'next';
 
 
 export default async function RootLayout({ children, params }) {
