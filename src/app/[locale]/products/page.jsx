@@ -1,26 +1,26 @@
 export async function generateMetadata() {
   return {
-    title: 'منتجات ميجا باور | حلول الطاقة المتقدمة',
-    description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من ميجا باور للمنازل والشركات.',
-    keywords: ['ميجا باور', 'بطاريات', 'طاقة', 'LiFePO4', 'منتجات الطاقة'],
+    title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
+    description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
+    keywords: ['Mega Power ميجا باور', 'بطاريات', 'طاقة', 'LiFePO4', 'منتجات الطاقة'],
     openGraph: {
-      title: 'منتجات ميجا باور | حلول الطاقة المتقدمة',
-      description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من ميجا باور للمنازل والشركات.',
+      title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
+      description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
       images: ['/assets/mega-power-logo.png'],
       type: 'website',
       locale: 'ar',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'منتجات ميجا باور | حلول الطاقة المتقدمة',
-      description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من ميجا باور للمنازل والشركات.',
+      title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
+      description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
       images: ['/assets/mega-power-logo.png'],
     },
   };
 }
 import { baseUrl } from '@/context/baseURL';
 import { getLocale } from 'next-intl/server';
-import PaginationControls from '@/components/PaginationControls';
+ 
 import ProductList from '@/components/ProductList ';
 
 
@@ -46,25 +46,19 @@ async function getDepartments() {
 export default async function ProductsPage({ searchParams }) {
   const locale = await getLocale();
 
-
   const { page, department } = await searchParams;
   const currentPage = Number(page || 1);
 
   const departmentsData = await getDepartments();
   const productsData = await getProducts();
 
-
   const products = productsData?.data || [];
- 
-
   return (
     <>
-    
       <section className="transition-colors duration-300 py-20 px-5 md:px-10">
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-1 gap-12"> 
-          <ProductList initialProducts={products} department={departmentsData['data']["result"]} currentPage={currentPage}/>
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-1 gap-12">
+          <ProductList initialProducts={products} department={departmentsData['data']["result"]} currentPage={currentPage} />
         </div>
-      
       </section>
     </>
   );

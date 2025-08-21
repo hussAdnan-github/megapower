@@ -38,17 +38,17 @@ console.log(pathname)
             </Link>
           </li>
           <li>
-            <Link href="/products" className={` transition-colors ${pathname === '/ar/products' || pathname === '/en/products' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
+            <Link href="/products" className={` transition-colors ${pathname.startsWith('/ar/products') || pathname.startsWith('/en/products') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
              {t('Products')}
             </Link>
           </li>
           <li>
-            <Link href="/projects" className={` transition-colors ${pathname === '/ar/projects' ||pathname === '/en/projects' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
+            <Link href="/projects" className={` transition-colors ${pathname.startsWith('/ar/projects') || pathname.startsWith('/en/projects') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
              {t('Projects')}
             </Link>
           </li>
           <li>
-            <Link href="/news" className={` transition-colors ${pathname === '/ar/news' ||pathname === '/en/news'? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
+            <Link href="/news" className={` transition-colors ${pathname.startsWith('/ar/news') || pathname.startsWith('/en/news') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`}>
               {t('News')}
             </Link>
           </li>
@@ -83,17 +83,17 @@ console.log(pathname)
             </Link>
           </li>
           <li className="py-2">
-            <Link href="/products" className={`block font-semibold ${pathname === '/ar/products' || pathname === '/en/products' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
+            <Link href="/products" className={`block font-semibold ${pathname.startsWith('/ar/products') || pathname.startsWith('/en/products') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
              {t('Products')}
             </Link>
           </li>
           <li className="py-2">
-            <Link href="/projects" className={`block font-semibold ${pathname === '/ar/projects' ||pathname === '/en/projects' ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
+            <Link href="/projects" className={`block font-semibold ${pathname.startsWith('/ar/projects') || pathname.startsWith('/en/projects') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
              {t('Projects')}
             </Link>
           </li>
           <li className="py-2">
-            <Link href="/news" className={`block font-semibold ${pathname === '/ar/news' ||pathname === '/en/news'? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
+            <Link href="/news" className={`block font-semibold ${pathname.startsWith('/ar/news') || pathname.startsWith('/en/news') ? 'text-blue-600 dark:text-blue-400 font-bold' : 'font-light'}`} onClick={toggleMobileMenu}>
               {t('News')}
             </Link>
           </li>

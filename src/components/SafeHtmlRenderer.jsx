@@ -2,7 +2,7 @@
  
   return (
     <div
-      data-aos="fade-right" data-aos-delay="100"
+      data-aos="fade-up" data-aos-delay="100"
 
       className={className}
       dangerouslySetInnerHTML={{ __html: rawHtml }}

@@ -4,14 +4,12 @@ import './globals.css';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
- 
-import AOSInit from '@/components/AOSInit';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+
+import AOSInit from '@/components/layout/AOSInit';
 import ThemeProvider from '@/providers/theme-provider';
-
-import { Metadata } from 'next';
-
+import QueryPovider from '@/providers/query-povider';
 
 export default async function RootLayout({ children, params }) {
 
@@ -22,17 +20,17 @@ export default async function RootLayout({ children, params }) {
   }
   return (
     <html lang={locale} dir={locale == 'en' ? 'ltr' : 'rtl'} suppressHydrationWarning>
-      <AOSInit />
-
       <body >
-
-        <ThemeProvider>
+        <AOSInit />
+        {/* <ThemeProvider> */}
           <NextIntlClientProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
+            <QueryPovider>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </QueryPovider>
           </NextIntlClientProvider>
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

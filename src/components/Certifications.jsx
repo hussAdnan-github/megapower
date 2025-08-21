@@ -1,7 +1,7 @@
 
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
-import MainTitle from './MainTitle';
+import MainTitle from './layout/MainTitle';
 
 const certifications = [
   { src: "/assets/WERCS.jpg", alt: "ISO 9001" },

@@ -34,7 +34,7 @@ export default function TabProduct({rawHtml , documents  , locales}) {
             {activeTab === 'Description' && (
    <SafeHtmlRenderer
         rawHtml={rawHtml}
-        className="html-content" // يمكنك تمرير كلاس للتنسيق
+        className="html-content"  
       />          
           )}
             {activeTab === 'Downloads' && (

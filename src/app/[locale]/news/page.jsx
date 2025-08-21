@@ -1,28 +1,28 @@
 export async function generateMetadata() {
   return {
-    title: 'أخبار ميجا باور | آخر المستجدات والمقالات',
-    description: 'تابع أحدث أخبار ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
-    keywords: ['ميجا باور', 'أخبار', 'مقالات', 'فعاليات', 'طاقة'],
+    title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
+    description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
+    keywords: ['Mega Power ميجا باور', 'أخبار', 'مقالات', 'فعاليات', 'طاقة'],
     openGraph: {
-      title: 'أخبار ميجا باور | آخر المستجدات والمقالات',
-      description: 'تابع أحدث أخبار ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
+      title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
+      description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
       images: ['/assets/mega-power-logo.png'],
       type: 'website',
       locale: 'ar',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'أخبار ميجا باور | آخر المستجدات والمقالات',
-      description: 'تابع أحدث أخبار ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
+      title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
+      description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
       images: ['/assets/mega-power-logo.png'],
     },
   };
 }
 
 import { baseUrl } from '@/context/baseURL';
-import PaginationControls from '@/components/PaginationControls';
+import PaginationControls from '@/components/layout/PaginationControls';
 import FillterNews from '@/components/FillterNews';
-import { getLocale  } from 'next-intl/server';
+import { getLocale } from 'next-intl/server';
 import NewList from '@/components/NewList';
 const ITEMS_PER_PAGE = 20;
 
@@ -32,7 +32,7 @@ async function getNews(page, typeArticle) {
   if (typeArticle) {
     url += `&type_article=${typeArticle}`;
   }
-  const res = await fetch(url, { cache: 'no-store' });
+  const res = await fetch(url, { next: { revalidate: 600 } });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -41,7 +41,10 @@ async function getNews(page, typeArticle) {
   return res.json();
 }
 async function getNewsArticles() {
-  const res = await fetch(`${baseUrl}news/type-articles/`,
+  const res = await fetch(`${baseUrl}news/type-articles/`, {
+
+    next: { revalidate: 86400 }
+  }
   );
 
   if (!res.ok) {
@@ -69,12 +72,8 @@ export default async function NewsPage({ searchParams }) {
 
   return (
     <>
-
-      {/* <Headerpage title={t('titleNews')} subTitle={t('subTitleNews')}/> */}
-
-
       <section className="  transition-colors duration-300 py-20 px-5 md:px-10">
-        <FillterNews articles={articles['data']['result']} locales={locale}/>
+        <FillterNews articles={articles['data']['result']} locales={locale} />
         <NewList news={news['data']['result']} locales={locale} />
 
         <PaginationControls

@@ -1,10 +1,27 @@
 'use client'
  import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
-export default function Imagesproduct({ images , name }) {
-      const [activeImage, setActiveImage] = useState(images[0]['image']);
-   
+export default function Imagesproduct({ images , name , mainImage }) {
+        // const [activeImage, setActiveImage] = useState(mainImage || (images && images.length > 0 ? images[0].image : ''));
+
+      const [activeImage, setActiveImage] = useState(mainImage || images[0].image);
+    const displayImages = useMemo(() => {
+        if (!images) return [];
+
+        const mainImageExists = images.some(img => img.image === mainImage);
+
+        if (mainImageExists || !mainImage) {
+            return images;
+        }
+        return [
+            { 
+                id: 'main-image', 
+                image: mainImage 
+            },
+            ...images
+        ];
+    }, [images, mainImage]);  
     return (
         <div className="space-y-6">
             <div  data-aos="fade-left" data-aos-delay ="100" className="relative w-full aspect-square  dark-bg-li rounded-lg shadow-md flex items-center justify-center overflow-hidden">
@@ -12,7 +29,7 @@ export default function Imagesproduct({ images , name }) {
             </div>
             <div  data-aos="fade-up" data-aos-delay ="100" className="flex justify-center gap-4">
 
-                {images.map((img) => (
+                {displayImages.map((img) => (
 
                     <Image
                         key={img.id}

@@ -1,63 +1,35 @@
 export async function generateMetadata() {
   return {
-    title: 'مشاريع ميجا باور | قصص النجاح والدراسات',
-    description: 'شاهد كيف أحدثت ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
-    keywords: ['ميجا باور', 'مشاريع', 'دراسات حالة', 'نجاح', 'طاقة'],
+    title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
+    description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
+    keywords: ['Mega Power ميجا باور', 'مشاريع', 'دراسات حالة', 'نجاح', 'طاقة'],
     openGraph: {
-      title: 'مشاريع ميجا باور | قصص النجاح والدراسات',
-      description: 'شاهد كيف أحدثت ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
+      title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
+      description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
       images: ['/assets/mega-power-logo.png'],
       type: 'website',
       locale: 'ar',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'مشاريع ميجا باور | قصص النجاح والدراسات',
-      description: 'شاهد كيف أحدثت ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
+      title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
+      description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
       images: ['/assets/mega-power-logo.png'],
     },
   };
 }
 
 import React from 'react'
- 
+
 import { baseUrl } from '@/context/baseURL';
 import { getLocale, getTranslations } from 'next-intl/server';
 import Headerpage from '@/components/Headerpage';
-import PaginationControls from '@/components/PaginationControls';
+import PaginationControls from '@/components/layout/PaginationControls';
 import ProjectList from '@/components/ProjectList';
 
 const ITEMS_PER_PAGE = 20;
 
-// const projects = [
-//   {
-//     id: 'riyadh-villa',
-//     title: 'مشروع فيلا الرياض',
-//     category: 'سكني',
-//     description: 'حل شمسي وتخزين متكامل يوفر استقلالية في الطاقة على مدار الساعة وطوال أيام الأسبوع وتوفيرًا كبيرًا في الفواتير لفيلا حديثة.',
-//     imageSrc: '/assets/project.png',
-//     link: '/projects/riyadh-villa'
-//   },
-//   {
-//     id: 'jeddah-warehouse',
-//     title: 'تخزين طاقة مستودع جدة',
-//     category: 'تجاري',
-//     description: 'ضمان عدم توقف العمل لمنشأة تجارية حيوية بفضل أنظمة طاقة احتياطية موثوقة وفورية.',
-//     imageSrc: '/assets/project.png',
-//     link: '/projects/jeddah-warehouse'
-//   },
-//   {
-//     id: 'dammam-farm',
-//     title: 'مزرعة الدمام خارج الشبكة',
-//     category: 'زراعي',
-//     description: 'تزويد أنظمة الري والإضاءة الأساسية بالطاقة في مزرعة نائية، مع استقلالية تامة عن الشبكة.',
-//     imageSrc: '/assets/project.png',
-//     link: '/projects/dammam-farm'
-//   },
-//   // هنا يمكنك إضافة المزيد من المشاريع
-// ];
 async function getProjects(page) {
-  //  console.log(id)
   const res = await fetch(`${baseUrl}projects/projects/?page=${page}`);
 
   if (!res.ok) {
@@ -69,18 +41,18 @@ async function getProjects(page) {
 export default async function ProjectsPage({ searchParams }) {
 
   const currentPage = (await searchParams).page;
-  
+
   const projects = await getProjects(currentPage || 1);
- 
+
 
   const totalprojects = projects['data'].count;
   const totalPages = Math.ceil(totalprojects / ITEMS_PER_PAGE);
 
   const hasNextPage = projects['data'].next !== null;
   const hasPrevPage = projects['data'].previous !== null;
- 
 
- 
+
+
   const locale = await getLocale();
   const t = await getTranslations('Headerpage');
 
@@ -89,7 +61,7 @@ export default async function ProjectsPage({ searchParams }) {
       <Headerpage title={t('titleProjects')} subTitle={t('subTitleProjects')} />
       <section className="  transition-colors duration-300 py-20 px-5 md:px-10">
         <div className="container mx-auto">
-       <ProjectList projects={projects['data']['result']} locale={locale} btnprojects={t('btnprojects')}/>
+          <ProjectList projects={projects['data']['result']} locale={locale} btnprojects={t('btnprojects')} />
         </div>
         <PaginationControls
           nameApi={'/projects?'}

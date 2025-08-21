@@ -1,4 +1,4 @@
- 
+
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -6,14 +6,14 @@ import Image from 'next/image';
 
 import { useTranslations } from 'next-intl';
 
-export default function Footer () {
+export default function Footer() {
   const t = useTranslations('Footer');
 
   return (
     <footer className="bg-[#222222] text-gray-400    transition-colors duration-300">
       <div className="container mx-auto px-5 md:px-10 py-16">
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
-          {/* العمود 1: الشعار والشعار الفرعي */}
+
           <div className="flex flex-col items-center md:items-start">
             <Image
               src="/assets/mega-power-logo.png"
@@ -29,7 +29,7 @@ export default function Footer () {
               <a href="#" aria-label="YouTube" className="text-gray-400 hover:text-white transition-colors"><i className="fab fa-youtube"></i></a>
             </div>
           </div>
-          {/* العمود 2: روابط سريعة */}
+
           <div className='flex flex-col items-center md:items-start'>
             <h3 className="text-white text-lg font-semibold mb-6 relative after:absolute after:bottom-[-8px] after:right-0 after:h-0.5 after:w-10 after:bg-yellow-400">
               {t('headerLink')}
@@ -41,7 +41,7 @@ export default function Footer () {
               <li><Link href="/contact" className="hover:text-yellow-400 transition-colors">{t('Projects')}</Link></li>
             </ul>
           </div>
-          {/* العمود 3: الدعم */}
+
           <div className='flex flex-col items-center md:items-start'>
             <h3 className="text-white text-lg font-semibold mb-6 relative after:absolute after:bottom-[-8px] after:right-0 after:h-0.5 after:w-10 after:bg-yellow-400">
               {t('headerSupport')}
@@ -54,16 +54,16 @@ export default function Footer () {
               <li><Link href="#" className="hover:text-yellow-400 transition-colors">                         {t('Downloads')}
               </Link></li>
               <li><Link href="#" className="hover:text-yellow-400 transition-colors">                         {t('Warranty')}
-</Link></li>
+              </Link></li>
             </ul>
-          </div> 
-          {/* العمود 4: تواصل معنا */}
+          </div>
+
           <div className='flex flex-col items-center md:items-start'>
             <h3 className="text-white text-lg font-semibold mb-6 relative after:absolute after:bottom-[-8px] after:right-0 after:h-0.5 after:w-10 after:bg-yellow-400">
               {t('headerContact')}
             </h3>
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-map-marker-alt mt-1"></i>                         {t('city')}
-</p>
+            </p>
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-envelope mt-1"></i>info@megapower.com</p>
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i>+966 12 345 6789</p>
           </div>

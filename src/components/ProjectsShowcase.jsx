@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getHome } from '@/context/api';
 import { getLocale, getTranslations } from 'next-intl/server';
-import MainTitle from './MainTitle';
+import MainTitle from './layout/MainTitle';
 
  
 export default async function ProjectsShowcase(){

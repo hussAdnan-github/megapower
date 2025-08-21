@@ -1,5 +1,5 @@
  
-import MainTitle from "./MainTitle";
+import MainTitle from "./layout/MainTitle";
 import { useTranslations } from "next-intl";
 
 const features = [

@@ -11,8 +11,9 @@
     "btn": "Discover Products"
   },
   "Layout": {
-    "all": " All",
-   
+    "All": " All",
+    "filtter": "Product categories",
+    "search": "Search for products",
     "btnProducts": "View All Products", 
     "btnProjects": "View All Projects",
     "ContactUs": "Enter Your Email Address",
