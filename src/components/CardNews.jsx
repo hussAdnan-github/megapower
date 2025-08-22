@@ -36,7 +36,7 @@ export default function CardNews({article , index}) {
                 </h3>
                 <Link
                     href={`/news/${article.id}`}
-                    className="mt-auto self-start transition-all text-blue-600 group-hover:underline group-hover:text-white font-semibold"
+                    className="mt-auto self-start transition-all text-blue-600 group-hover:underline   font-semibold"
                 >
                     {t('show_2')}
                 </Link>
