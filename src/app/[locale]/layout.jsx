@@ -8,8 +8,7 @@ import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-import AOSInit from '@/components/layout/AOSInit';
-import ThemeProvider from '@/providers/theme-provider';
+ import ThemeProvider from '@/providers/theme-provider';
 import QueryPovider from '@/providers/query-povider';
 
 const tajawalFont = Tajawal({
@@ -29,7 +28,7 @@ export default async function RootLayout({ children, params }) {
   }
   return (
     <html lang={locale} dir={locale == 'en' ? 'ltr' : 'rtl'} suppressHydrationWarning>
-        <AOSInit />
+  
 
       <body className={`${tajawalFont.className}`}>
 

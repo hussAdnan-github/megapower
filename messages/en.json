@@ -3,7 +3,7 @@
     "home": "Home",
     "Projects": "Projects",
     "News": "News",
-    "Products": "Products"
+    "Products": "Products" 
   },
   "Hero": {
     "title": "Pure Energy for a Brighter Future",
@@ -17,9 +17,11 @@
     "btnProducts": "View All Products", 
     "btnProjects": "View All Projects",
     "ContactUs": "Enter Your Email Address",
-    "ContactUsBtn": "Get Started"
+    "ContactUsBtn": "Get Started",
+     "sendEmailtitle": "Are you ready to empower your future?",
+    "sendEmaidescription": "Contact us today for a free consultation or to find a distributor near you."
 
- 
+  
   },
    "Headerpage": {
     "btnNews": "View All News",

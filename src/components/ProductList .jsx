@@ -13,10 +13,9 @@ import PaginationControls from './layout/PaginationControls';
 
 const ITEMS_PER_PAGE = 20;
 
-// 2. تعريف دالة جلب البيانات خارج المكون
-// سيقوم useQuery بتمرير queryKey إلى هذه الدالة
+ 
 const fetchProducts = async ({ queryKey }) => {
-    // queryKey سيكون ['products', 'department=2&page=1']
+     
     const [_key, paramsString] = queryKey;
     const res = await fetch(`${baseUrl}/products/products/?${paramsString}`);
     if (!res.ok) {
@@ -25,50 +24,44 @@ const fetchProducts = async ({ queryKey }) => {
     return res.json();
 };
 
-
-export default function ProductList({ department, currentPage }) {
+ export default function ProductList({ department, currentPage  }) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
-    // حالة البحث تبقى كما هي لأنها تخص تفاعل المستخدم المباشر
     const [searchTerm, setSearchTerm] = useState('');
 
-    // 3. استبدال useState و useEffect بـ useQuery
-    const { data: apiResponse, isLoading, isError, error } = useQuery({
-        // queryKey هو المفتاح الفريد للبيانات في الـ cache.
-        // عندما يتغير هذا المفتاح، سيقوم useQuery بإعادة الجلب.
+    const { data: apiResponse, isLoading, isError, error , refetch  } = useQuery({
+
         queryKey: ['products', searchParams.toString()],
-        // queryFn هي الدالة التي تقوم بجلب البيانات
+         
         queryFn: fetchProducts,
-        // (اختياري) احتفظ بالبيانات القديمة مرئية أثناء تحميل البيانات الجديدة
-        keepPreviousData: true, 
-        // (اختياري) مدة اعتبار البيانات "حديثة" (لا يتم إعادة جلبها في الخلفية) - 5 دقائق
-        staleTime: 1000 * 60 * 5, 
+        // initialData: initialProducts,
+ 
+        keepPreviousData: true,
+        
+        staleTime: 1000 * 60 * 5,
     });
 
-    // 4. استخراج البيانات من استجابة useQuery
-    const products = apiResponse?.data?.result || [];
+     const products = apiResponse?.data?.result || [];
     const paginationData = {
         next: apiResponse?.data?.next || null,
         previous: apiResponse?.data?.previous || null,
         count: apiResponse?.data?.count || 0,
     };
-    
-    const totalPages = Math.ceil(paginationData.count / ITEMS_PER_PAGE);
 
-    // 5. الـ useEffect الخاص بالبحث (Debounce) يبقى كما هو!
-    // وظيفته هي تحديث الـ URL، وعندما يتغير الـ URL، سيقوم useQuery بالعمل تلقائيًا.
+    const totalPages = Math.ceil(paginationData.count / ITEMS_PER_PAGE);
+ 
     useEffect(() => {
         const debounceTimeout = setTimeout(() => {
             const params = new URLSearchParams(searchParams.toString());
             if (searchTerm.trim()) {
                 params.set('search', searchTerm.trim());
-                params.set('page', currentPage); // إعادة للصفحة الأولى عند البحث
+                params.set('page', currentPage);  
             } else {
                 params.delete('search');
             }
-            // فقط قم بتحديث الـ URL. useQuery سيتكفل بالباقي.
+          
             router.push(`${pathname}?${params.toString()}`);
         }, 500);
 
@@ -84,11 +77,26 @@ export default function ProductList({ department, currentPage }) {
                     setSearchTerm={setSearchTerm}
                 />
                 <div className="lg:col-span-3">
-                    {/* 6. استخدام حالات التحميل والخطأ من useQuery */}
-                    {isLoading ? (
-                        <p>جاري البحث...</p>
+                     {isLoading ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                             {Array.from({ length: 6 }).map((_, index) => (
+                                <div key={index} className="border rounded-lg p-4 animate-pulse">
+                                    <div className="w-full h-48 bg-gray-200 rounded-md mb-4"></div>
+                                    <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+                                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                                </div>
+                            ))}
+                        </div>
                     ) : isError ? (
-                        <p>حدث خطأ: {error.message}</p>
+                        <div className="text-center py-10">
+                            <p className="text-red-500 mb-4">حدث خطأ: {error.message}</p>
+                             <button
+                                onClick={() => refetch()}
+                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                            >
+                                إعادة المحاولة
+                            </button>
+                        </div>
                     ) : Array.isArray(products) && products.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {products.map((product, index) => (
@@ -100,8 +108,7 @@ export default function ProductList({ department, currentPage }) {
                     )}
                 </div>
             </div>
-            {/* !!paginationData.next */}
-            <PaginationControls
+             <PaginationControls
                 currentPage={currentPage}
                 totalPages={totalPages}
                 hasNextPage={paginationData.next}

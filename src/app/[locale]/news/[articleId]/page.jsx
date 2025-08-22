@@ -7,7 +7,9 @@ import { getLocale, getTranslations } from 'next-intl/server';
 
 async function articlesData(id) {
 
-  const res = await fetch(`${baseUrl}news/news-articles/${id}`);
+  const res = await fetch(`${baseUrl}news/news-articles/${id}`, {
+    next: { revalidate: 86400 }  
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -29,7 +31,7 @@ export default async function SingleArticlePage({ params }) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <article className="lg:col-span-2 space-y-6">
             <header
-              data-aos="fade-up" data-aos-delay="100"
+
 
               className="mb-8">
               <span className="dark-bg-li text-xs font-semibold px-3 py-1 rounded-full ">{`${locale == 'ar' ? articles['data'].name_type_article_ar : articles['data'].name_type_article_en}`}</span>
@@ -40,7 +42,7 @@ export default async function SingleArticlePage({ params }) {
             </header>
 
             <div
-              data-aos="fade-up" data-aos-delay="200"
+
 
               className="relative aspect-[16/9] w-full rounded-lg overflow-hidden shadow-xl mb-8">
               <Image src={articles['data'].image} alt={`${locale == 'ar' ? articles['data'].title_ar : articles['data'].title_en}`} layout="fill" objectFit="cover" />

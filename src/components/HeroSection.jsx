@@ -1,26 +1,23 @@
- 
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import Image from 'next/image';
+import TitleHero from './TitleHero';
 
 export default function HeroSection() {
-  const t = useTranslations('Hero');
   return (
-    <section
+    <section className="relative h-[90vh] flex flex-col justify-center items-center text-center">
+   
+      <Image
+        src="/assets/b1.jpg"
+        alt="صورة خلفية للقسم الرئيسي"  
+        layout="fill"
+        objectFit="cover"
+        placeholder="blur"  
+        blurDataURL="/assets/b1-placeholder.jpg"  
+        className="-z-10" 
+      />
+      
+       <div className="absolute inset-0 bg-black opacity-50 -z-10"></div>
 
-      className="h-[90vh]  flex flex-col justify-center items-center text-center   bg-cover bg-center"
-      style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/b1.jpg')" }}
-    >
-      <h1 data-aos="zoom-in" className="text-white text-4xl md:text-6xl font-bold mb-4">
-        {t('title')}
-      </h1>
-      <p data-aos="zoom-in" data-aos-delay="100" className="text-lg text-white md:text-xl max-w-2xl mb-8">
-        {t('subTitle')}
-      </p>
-      <Link data-aos="fade-up" href="/products" className="bg-yellow-400 text-[#111827] hover:bg-yellow-500 font-bold py-4 px-8 rounded-full transition-colors duration-300">
-        {t('btn')}
-
-      </Link>
+       <TitleHero />
     </section>
   );
 };
-

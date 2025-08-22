@@ -1,23 +1,23 @@
-export async function generateMetadata() {
-  return {
-    title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
-    description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
-    keywords: ['Mega Power ميجا باور', 'أخبار', 'مقالات', 'فعاليات', 'طاقة'],
-    openGraph: {
-      title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
-      description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
-      images: ['/assets/mega-power-logo.png'],
-      type: 'website',
-      locale: 'ar',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
-      description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
-      images: ['/assets/mega-power-logo.png'],
-    },
-  };
-}
+// export async function generateMetadata() {
+//   return {
+//     title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
+//     description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
+//     keywords: ['Mega Power ميجا باور', 'أخبار', 'مقالات', 'فعاليات', 'طاقة'],
+//     openGraph: {
+//       title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
+//       description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
+//       images: ['/assets/mega-power-logo.png'],
+//       type: 'website',
+//       locale: 'ar',
+//     },
+//     twitter: {
+//       card: 'summary_large_image',
+//       title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
+//       description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
+//       images: ['/assets/mega-power-logo.png'],
+//     },
+//   };
+// }
 
 import { baseUrl } from '@/context/baseURL';
 import PaginationControls from '@/components/layout/PaginationControls';
@@ -57,9 +57,11 @@ export default async function NewsPage({ searchParams }) {
   const { page, type_article } = await searchParams;
 
   const currentPage = Number(page || 1);
-  const news = await getNews(currentPage, type_article ?? '');
-
-  const articles = await getNewsArticles();
+ 
+   const [news, articles] = await Promise.all([
+    getNews(currentPage, type_article ?? ''),
+    getNewsArticles()
+]);
 
   const totalnews = news['data'].count;
   const totalPages = Math.ceil(totalnews / ITEMS_PER_PAGE);

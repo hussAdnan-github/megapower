@@ -1,7 +1,3 @@
-
-
-
-
 import ImageProject from '@/components/ImageProject';
 import SafeHtmlRenderer from '@/components/SafeHtmlRenderer';
 import { baseUrl } from '@/context/baseURL';
@@ -43,7 +39,6 @@ export default async function ProjectDetailPage({ params }) {
 
   return (
     <>
-
       <header className=" dark-bg-li text-center py-16   px-5">
         <h1 className="text-4xl md:text-5xl font-bold  textDark mb-8">{`${locale == 'ar' ? project.name_ar : project.name_en}`}</h1>
         <div className="flex flex-wrap justify-center gap-4 text-sm mt-4">
@@ -57,23 +52,14 @@ export default async function ProjectDetailPage({ params }) {
           <span className="flex items-center gap-2 text-xl"><i className="fas fa-calendar-alt text-blue-600 text-2xl"></i> <h1 className='text-xl font-bold'>تم الانتهاء: </h1> {project.completed}</span>
         </div>
       </header>
-
-
-
-      <ImageProject images={images['data']['result']} title={project.title} />
-
-
+     <ImageProject images={images['data']['result']} title={project.title} />
       <section className="dark-bg-li  transition-colors duration-300 py-20 md:px-10">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
-
           <div className="lg:col-span-2 space-y-8 prose dark:prose-invert max-w-none">
             <SafeHtmlRenderer rawHtml={`${locale == 'ar' ? project.description_ar : project.description_en}`} className="mt-8" />
           </div>
           <aside className="lg:col-span-1 ">
-            <div
-              data-aos="fade-up" data-aos-delay="100"
-
-              className="relative DarkCard  p-8 rounded-xl shadow-lg border-e-4 border-blue-600 space-y-6">
+            <div className="relative DarkCard  p-8 rounded-xl shadow-lg border-e-4 border-blue-600 space-y-6">
               <i className="absolute right-4 fas fa-quote-left text-[#254773ad] text-4xl m-0"></i>
               <div className='mt-3'>
                 <p className="text-lg italic  ">

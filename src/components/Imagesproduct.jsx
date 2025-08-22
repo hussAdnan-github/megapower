@@ -24,10 +24,10 @@ export default function Imagesproduct({ images , name , mainImage }) {
     }, [images, mainImage]);  
     return (
         <div className="space-y-6">
-            <div  data-aos="fade-left" data-aos-delay ="100" className="relative w-full aspect-square  dark-bg-li rounded-lg shadow-md flex items-center justify-center overflow-hidden">
+            <div    className="relative w-full aspect-square  dark-bg-li rounded-lg shadow-md flex items-center justify-center overflow-hidden">
                 <Image src={activeImage} alt={name} layout="fill" objectFit="contain" />
             </div>
-            <div  data-aos="fade-up" data-aos-delay ="100" className="flex justify-center gap-4">
+            <div    className="flex justify-center gap-4">
 
                 {displayImages.map((img) => (
 

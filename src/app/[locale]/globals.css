@@ -1,12 +1,14 @@
 @import "tailwindcss";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
- 
- :root {
+
+:root {
   --background-color_light: #ffffff;
   --text-colors: #111827;
   --secondary-text-color: #4b5563;
- --background-color: #f8f9fa;
- --backgroundCard-color: #e7f1ff;
+  --background-color: #f8f9fa;
+  --backgroundCard-color: #e7f1ff;
+  --text-light-colors: #202020da;
+
 }
 
 html.dark {
@@ -15,25 +17,31 @@ html.dark {
   --text-colors: #9b9696;
   --secondary-text-color: #a1a1aa;
   --backgroundCard-color: #2c3e50;
+  --text-light-colors: #ffffff;
 
 }
- 
+
 body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
- 
+
 .dark-bg-li {
-   background-color: var(--background-color_light); 
+  background-color: var(--background-color_light);
+}
+.dark-text-li{
+  color: var(--text-light-colors);
 }
 .textDark {
   color: var(--text-colors);
 }
+
 .DarkCard {
-    background-color: var(--backgroundCard-color);
+  background-color: var(--backgroundCard-color);
 }
- .swiper {
+
+.swiper {
   width: 100%;
   height: 100%;
 }
@@ -51,6 +59,39 @@ body {
 
 .swiper-slide img {
   display: block;
- 
+
   object-fit: cover;
+}
+
+/* loading */
+
+ 
+.animate-custom-rotate {
+  animation: rotate 5s linear infinite;
+}
+
+.animate-custom-pulse-main {
+  animation: pulse-main 1.5s ease-in-out infinite alternate;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+    
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-main {
+  from {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.8;
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 1;
+  }
 }

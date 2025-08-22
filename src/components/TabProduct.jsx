@@ -6,7 +6,7 @@ export default function TabProduct({rawHtml , documents  , locales}) {
   const [activeTab, setActiveTab] = useState('Description');
  
   return (
-      <div data-aos="fade-up" data-aos-delay ="200" className="container mx-auto mt-16">
+      <div   className="container mx-auto mt-16">
          <div className="flex border-b border-gray-200 -700">
             <button
               className={`hover:cursor-pointer py-4 px-6 -mb-px font-semibold transition-colors duration-300 ${

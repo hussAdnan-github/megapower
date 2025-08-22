@@ -24,7 +24,7 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={handleClick}
-      className="px-3 py-2 border-2 text-xl rounded-full hover:cursor-pointer"
+      className="px-2 py-1 border-2 text-xl rounded-full hover:cursor-pointer"
     >
       {otherLocale === 'ar' ? 'Ar' : 'En'}
     </button>

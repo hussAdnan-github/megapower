@@ -2,6 +2,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { fadIn } from "@/lib/frameMotion";
+import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
  
  
@@ -10,8 +12,11 @@ export default function ProductCard({ product, index }) {
     const locale = useLocale();
  
     return (
-        <div
-           data-aos="fade-up" data-aos-delay ="100" 
+    <motion.div
+      variants={fadIn('up',.1)}
+      initial='hidden'
+      whileInView={'show'}
+      viewport={{ once: true, amount: 0.1 }}
             className="dark-bg-li rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
             <div className="p-4 flex justify-center items-center h-60">
                 <Image
@@ -19,6 +24,7 @@ export default function ProductCard({ product, index }) {
                     alt={`${locale === 'ar' ? product.name_ar : product.name_en}`}
                     width={250}
                     height={250}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-contain max-h-full"
                 />
             </div>
@@ -32,6 +38,6 @@ export default function ProductCard({ product, index }) {
                     عرض التفاصيل
                 </Link>
             </div>
-        </div>
+        </motion.div>
     );
 }
