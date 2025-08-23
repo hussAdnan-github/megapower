@@ -16,7 +16,7 @@ export default function Home() {
       <FeaturedProducts />
       <ProjectsShowcase />
       <LatestNews />
-      <Certifications />
+      {/* <Certifications /> */}
       <ContactUs />
     </>
   );
