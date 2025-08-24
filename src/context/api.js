@@ -1,9 +1,8 @@
-// دالة عامة لجلب البيانات من أي API
-export async function getHome() {
+ export async function getHome() {
   const res = await fetch(`https://megapowers.pythonanywhere.com/`,
 
     {
-      next: { revalidate: 86400  } // <-- التحسين هنا
+      // next: { revalidate: 86400  } // <-- التحسين هنا
     }
   );
   if (!res.ok) {
@@ -12,3 +11,14 @@ export async function getHome() {
 
   return res.json();
 }
+
+
+export const truncateWords = (text, wordLimit) => {
+     if (!text) return '';
+    
+    const words = text.split(' ');
+    if (words.length > wordLimit) {
+        return words.slice(0, wordLimit).join(' ') + '...';
+    }
+    return text;
+};

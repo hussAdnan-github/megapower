@@ -32,11 +32,11 @@ export default function NewList({ news, locales }) {
             </div>
 
             <div className="p-6 flex-grow flex flex-col">
-              <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+              <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400 mb-2 gap-2">
                 <span className="text-xs font-bold border-2 px-4 py-2 rounded-full transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                   {`${locales == 'ar' ? article.title_ar : article.title_en}`}
                 </span>
-                <span>{article.created_at.split('T')[0]}</span>
+                <span  className="w-[29%] text-end" >{article.created_at.split('T')[0]}</span>
               </div>
               <h3 className="text-xl font-bold mb-2">
                 <div className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">

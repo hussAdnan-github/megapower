@@ -19,7 +19,12 @@
     "ContactUs": "أدخل عنوان بريدك الإلكتروني",
     "ContactUsBtn": " ابدأ الآن",
     "sendEmailtitle": "هل أنت مستعد لتمكين مستقبلك؟",
-    "sendEmaidescription": "تواصل معنا اليوم للحصول على استشارة مجانية أو للعثور على موزع قريب منك."
+    "sendEmaidescription": "تواصل معنا اليوم للحصول على استشارة مجانية أو للعثور على موزع قريب منك.",
+    "Productstitle": "منتجات مميزة",
+
+    "Description": "الوصف",
+    "Downloads": "التحميلات",
+    "Viewdetails": "عرض التفاصيل"
 
   },
   "Headerpage": {
@@ -27,7 +32,6 @@
 
     "certificationstitle": "جودة وثقة معتمدة",
     "date": "التاريخ",
-    "Productstitle": "منتجات مميزة",
     "Projectstitle": "مشاريعنا المنفذة",
     "Newstitle": "آخر الأخبار",
     "confidencetitle": "جودة وثقة معتمدة",

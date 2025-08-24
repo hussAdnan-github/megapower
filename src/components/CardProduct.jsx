@@ -9,7 +9,7 @@ export default function CardProduct({ product  }) {
     const locale = useLocale();
     const t = useTranslations('Headerpage');
 
-    return (
+    return ( 
 
         <motion.div
       
@@ -29,7 +29,10 @@ export default function CardProduct({ product  }) {
             </div>
             <div className="p-6 text-center flex-grow flex flex-col">
                 <h3 className="text-xl font-bold   mb-2">{`${locale == 'ar' ? product.name_ar : product.name_en}`}</h3>
-                <p className="  flex-grow mb-4">{`${locale == 'ar' ? product.short_description_ar : product.short_description_en}`}</p>
+                <p className="  flex-grow mb-4">
+                    {`${locale == 'ar' ? product.short_description_ar : product.short_description_en}`}
+                    
+                    </p>
                 <Link
                     href={`/products/${product.id}`}
                     className="mt-auto inline-block bg-blue-600 hover:bg-blue-700   font-semibold py-3 px-6 rounded-full transition-colors duration-300"

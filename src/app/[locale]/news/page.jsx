@@ -1,23 +1,17 @@
-// export async function generateMetadata() {
-//   return {
-//     title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
-//     description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
-//     keywords: ['Mega Power ميجا باور', 'أخبار', 'مقالات', 'فعاليات', 'طاقة'],
-//     openGraph: {
-//       title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
-//       description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
-//       images: ['/assets/mega-power-logo.png'],
-//       type: 'website',
-//       locale: 'ar',
-//     },
-//     twitter: {
-//       card: 'summary_large_image',
-//       title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
-//       description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
-//       images: ['/assets/mega-power-logo.png'],
-//     },
-//   };
-// }
+export async function generateMetadata() {
+  return {
+    title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
+    description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
+    keywords: ['Mega Power ميجا باور', 'أخبار', 'مقالات', 'فعاليات', 'طاقة'],
+    openGraph: {
+      title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
+      description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
+      images: ['/assets/mega-power-logo.png'],
+      type: 'website',
+      locale: 'ar',
+    },
+  };
+}
 
 import { baseUrl } from '@/context/baseURL';
 import PaginationControls from '@/components/layout/PaginationControls';

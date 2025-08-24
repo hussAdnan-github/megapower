@@ -19,7 +19,11 @@
     "ContactUs": "Enter Your Email Address",
     "ContactUsBtn": "Get Started",
      "sendEmailtitle": "Are you ready to empower your future?",
-    "sendEmaidescription": "Contact us today for a free consultation or to find a distributor near you."
+    "sendEmaidescription": "Contact us today for a free consultation or to find a distributor near you.",
+        "Productstitle": "Featured Products",
+    "Description": "Description",
+    "Downloads": "Downloads",
+    "Viewdetails": "View Details"
 
   
   },
@@ -29,7 +33,7 @@
     "certificationstitle": "Certified quality and trust",
     "date": "Date",
 
-    "Productstitle": "Featured Products",
+
     "Projectstitle": "Our Executed Projects",
     "Newstitle": "Latest News",
     "confidencetitle": "Certified Quality & Trust",

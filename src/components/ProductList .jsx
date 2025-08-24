@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import ProductFilter from './ProductFilter';
 import ProductCard from './ProductCard';
 import PaginationControls from './layout/PaginationControls';
+import { useTranslations } from 'next-intl';
 
 const ITEMS_PER_PAGE = 20;
 
@@ -25,6 +26,8 @@ const fetchProducts = async ({ queryKey }) => {
 };
 
  export default function ProductList({ department, currentPage  }) {
+      const t =  useTranslations('Layout');
+
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -102,7 +105,7 @@ const fetchProducts = async ({ queryKey }) => {
                     ) : Array.isArray(products) && products.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {products.map((product, index) => (
-                                <ProductCard key={product.id} product={product} index={index} />
+                                <ProductCard key={product.id} product={product}  Viewdetails = {t('Viewdetails')}/>
                             ))}
                         </div>
                     ) : (

@@ -1,23 +1,18 @@
-// export async function generateMetadata() {
-//   return {
-//     title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
-//     description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
-//     keywords: ['Mega Power ميجا باور', 'مشاريع', 'دراسات حالة', 'نجاح', 'طاقة'],
-//     openGraph: {
-//       title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
-//       description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
-//       images: ['/assets/mega-power-logo.png'],
-//       type: 'website',
-//       locale: 'ar',
-//     },
-//     twitter: {
-//       card: 'summary_large_image',
-//       title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
-//       description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
-//       images: ['/assets/mega-power-logo.png'],
-//     },
-//   };
-// }
+export async function generateMetadata() {
+  return {
+    title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
+    description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
+    keywords: ['Mega Power ميجا باور', 'مشاريع', 'دراسات حالة', 'نجاح', 'طاقة'],
+    openGraph: {
+      title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
+      description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
+      images: ['/assets/mega-power-logo.png'],
+      type: 'website',
+      locale: 'ar',
+    },
+    
+  };
+}
 
 import React from 'react'
 

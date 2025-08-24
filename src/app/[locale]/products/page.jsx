@@ -1,23 +1,18 @@
-// export async function generateMetadata() {
-//   return {
-//     title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
-//     description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
-//     keywords: ['Mega Power ميجا باور', 'بطاريات', 'طاقة', 'LiFePO4', 'منتجات الطاقة'],
-//     openGraph: {
-//       title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
-//       description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
-//       images: ['/assets/mega-power-logo.png'],
-//       type: 'website',
-//       locale: 'ar',
-//     },
-//     twitter: {
-//       card: 'summary_large_image',
-//       title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
-//       description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
-//       images: ['/assets/mega-power-logo.png'],
-//     },
-//   };
-// }
+export async function generateMetadata() {
+  return {
+    title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
+    description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
+    keywords: ['Mega Power ميجا باور', 'بطاريات', 'طاقة', 'LiFePO4', 'منتجات الطاقة'],
+    openGraph: {
+      title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
+      description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
+      images: ['/assets/mega-power-logo.png'],
+      type: 'website',
+      locale: 'ar',
+    },
+    
+  };
+}
 import { baseUrl } from '@/context/baseURL';
 import { getLocale } from 'next-intl/server';
  
