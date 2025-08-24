@@ -53,7 +53,7 @@ console.log(pathname)
           </li>
 
         </ul>
-        <div className="flex gap-2 items-center">
+        <div className="flex   flex-row gap-2 items-center">
           <LanguageSwitcher />
           <ThemeSwitcher />
         </div>

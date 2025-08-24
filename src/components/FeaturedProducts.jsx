@@ -8,7 +8,7 @@ import ProductCard from './ProductCard';
 
 
 export default async function FeaturedProducts() {
-  const getdataproducts = await getHome();
+  const getdataproducts = await getHome(); 
   
   const t = await getTranslations('Layout');
   return (
@@ -18,7 +18,7 @@ export default async function FeaturedProducts() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {getdataproducts['data']['products'].map((products ) => (
-          <ProductCard product={products}   Viewdetails = {t('Viewdetails')} />
+          <ProductCard product={products} key={products.id}  Viewdetails = {t('Viewdetails')} />
           ))}
         </div>
       </div>
