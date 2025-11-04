@@ -1,23 +1,49 @@
-export async function generateMetadata() {
-  return {
-    title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
-    description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
-    keywords: ['Mega Power ميجا باور', 'أخبار', 'مقالات', 'فعاليات', 'طاقة'],
-    openGraph: {
-      title: 'أخبار Mega Power ميجا باور | آخر المستجدات والمقالات',
-      description: 'تابع أحدث أخبار Mega Power ميجا باور، فعاليات الشركة، والمقالات التقنية حول حلول الطاقة.',
-      images: ['/assets/mega-power-logo.png'],
-      type: 'website',
-      locale: 'ar',
-    },
-  };
-}
-
+ 
 import { baseUrl } from '@/context/baseURL';
 import PaginationControls from '@/components/layout/PaginationControls';
 import FillterNews from '@/components/FillterNews';
 import { getLocale } from 'next-intl/server';
 import NewList from '@/components/NewList';
+import { staticMetadata } from '../metadata';
+ 
+export async function generateMetadata() {
+  const lang = await getLocale();
+
+ 
+  let description = staticMetadata.newsList.description[lang];
+  let keywords = staticMetadata.newsList.keywords[lang].join(", ");
+
+  try {
+    const res = await fetch(`${baseUrl}/news/news-articles/`, { next: { revalidate: 3600 } });
+    if (res.ok) {
+      const data = await res.json();
+      const newss = data['data']['result'];
+
+
+      const newsNames = newss.map(p => lang === 'ar' ? p.name_type_article_ar : p.name_type_article_en);
+      keywords += ", " + newsNames.join(", ");
+
+      // إذا أردت جعل العنوان أول منتج
+      if (newss.length > 0) {
+
+        description = lang === 'ar' ? newss[0].title_ar : newss[0].title_en;
+      }
+    }
+  } catch (err) {
+    console.error("Failed to fetch newss for metadata:", err);
+  }
+
+  return {
+    title: staticMetadata.newsList.title[lang],
+
+    description,
+    keywords,
+
+  };
+}
+
+
+
 const ITEMS_PER_PAGE = 20;
 
 async function getNews(page, typeArticle) {

@@ -9,7 +9,7 @@ export default function TitleHero() {
     const t = useTranslations('Hero');
 
     return (
-        <div>
+        <div className='px-4 md:py-1'>
             <motion.h1
                 variants={fadIn('down', .1 )}
                 initial='hidden'

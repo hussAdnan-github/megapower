@@ -1,42 +1,51 @@
-export async function generateMetadata() {
-  return {
-    title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
-    description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
-    keywords: ['Mega Power ميجا باور', 'بطاريات', 'طاقة', 'LiFePO4', 'منتجات الطاقة'],
-    openGraph: {
-      title: 'منتجات Mega Power ميجا باور | حلول الطاقة المتقدمة',
-      description: 'اكتشف حلول تخزين الطاقة وبطاريات LiFePO4 الموثوقة من Mega Power ميجا باور للمنازل والشركات.',
-      images: ['/assets/mega-power-logo.png'],
-      type: 'website',
-      locale: 'ar',
-    },
-    
-  };
-}
+
 import { baseUrl } from '@/context/baseURL';
 import { getLocale } from 'next-intl/server';
- 
+
 import ProductList from '@/components/ProductList ';
+import { staticMetadata } from '../metadata';
 
 
+export async function generateMetadata() {
+  const lang = await getLocale();
 
-// async function getProducts() {
-//   let url = `${baseUrl}/products/products/`;
-//   // if (department) {
-//   //   url += `&department=${department}`;
-//   // }
-//   const res = await fetch(url, {
-//     next: { revalidate: 3600 } // إعادة التحقق كل ساعة (3600 ثانية)
-//   });
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data');
-//   }
-//   return res.json();
-// }
+ 
+  let description = staticMetadata.productList.description[lang];
+  let keywords = staticMetadata.productList.keywords[lang].join(", ");
 
+  try {
+    const res = await fetch(`${baseUrl}/products/products/`, { next: { revalidate: 3600 } });
+    if (res.ok) {
+      const data = await res.json();
+      const products = data['data']['result'];
+
+
+      const productNames = products.map(p => lang === 'ar' ? p.name_ar : p.name_en);
+      keywords += ", " + productNames.join(", ");
+
+      // إذا أردت جعل العنوان أول منتج
+      if (products.length > 0) {
+
+        description = lang === 'ar' ? products[0].short_description_ar : products[0].short_description_en;
+      }
+    }
+  } catch (err) {
+    console.error("Failed to fetch products for metadata:", err);
+  }
+
+  return {
+    title: staticMetadata.productList.title[lang],
+
+    description,
+    keywords,
+
+  };
+}
+
+ 
 async function getDepartments() {
   const res = await fetch(`${baseUrl}/products/departments/`, {
-    next: { revalidate: 86400 } 
+    next: { revalidate: 86400 }
   });
   if (!res.ok) { throw new Error('Failed to fetch departments'); }
   return res.json();
@@ -52,13 +61,13 @@ export default async function ProductsPage({ searchParams }) {
     getDepartments(),
     // getProducts()
   ]);
- 
+
   const products = productsData?.data || [];
   return (
     <>
       <section className="transition-colors duration-300 py-20 px-5 md:px-10">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-1 gap-12">
-          <ProductList    department={departmentsData['data']["result"]} currentPage={currentPage} />
+          <ProductList department={departmentsData['data']["result"]} currentPage={currentPage} />
         </div>
       </section>
     </>

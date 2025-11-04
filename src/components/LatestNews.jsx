@@ -1,7 +1,6 @@
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { getHome } from '@/context/api';
+ import { getHome } from '@/context/api';
 import { getTranslations } from 'next-intl/server';
 import MainTitle from './layout/MainTitle';
 import CardNews from './CardNews';

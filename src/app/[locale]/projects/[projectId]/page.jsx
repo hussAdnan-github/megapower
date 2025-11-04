@@ -3,6 +3,7 @@ import SafeHtmlRenderer from '@/components/SafeHtmlRenderer';
 import { baseUrl } from '@/context/baseURL';
 import { getLocale } from 'next-intl/server';
 import Image from 'next/image';
+import { staticMetadata } from '../../metadata';
 
 
 
@@ -28,7 +29,14 @@ async function getImages(id) {
   return resImg.json();
 }
 
-
+export async function generateMetadata() {
+  const locale = await getLocale();
+  return {
+    title: staticMetadata.projectList.title[locale],
+    description: staticMetadata.projectList.description[locale],
+    keywords: staticMetadata.projectList.keywords[locale].join(', '),
+  };
+}
 export default async function ProjectDetailPage({ params }) {
   const locale = await getLocale();
 
@@ -52,7 +60,7 @@ export default async function ProjectDetailPage({ params }) {
           <span className="flex items-center gap-2 text-xl"><i className="fas fa-calendar-alt text-blue-600 text-2xl"></i> <h1 className='text-xl font-bold'>تم الانتهاء: </h1> {project.completed}</span>
         </div>
       </header>
-     <ImageProject images={images['data']['result']} title={project.title} />
+      <ImageProject images={images['data']['result']} title={project.title} />
       <section className="dark-bg-li  transition-colors duration-300 py-20 md:px-10">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-8 prose dark:prose-invert max-w-none">

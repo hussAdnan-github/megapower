@@ -1,14 +1,24 @@
 
-import Link from 'next/link';
+
 import Image from 'next/image';
 import { baseUrl } from '@/context/baseURL';
 import SafeHtmlRenderer from '@/components/SafeHtmlRenderer';
 import { getLocale, getTranslations } from 'next-intl/server';
+import { title } from 'process';
+import { staticMetadata } from '../../metadata';
+export async function generateMetadata() {
+  const locale = await getLocale();
+  return {
+    title: staticMetadata.newsList.title[locale],
+    description: staticMetadata.newsList.description[locale],
+    keywords: staticMetadata.newsList.keywords[locale].join(', '),
+  };
+}
 
 async function articlesData(id) {
 
   const res = await fetch(`${baseUrl}news/news-articles/${id}`, {
-    next: { revalidate: 86400 }  
+    next: { revalidate: 86400 }
   });
 
   if (!res.ok) {
@@ -17,6 +27,7 @@ async function articlesData(id) {
 
   return res.json();
 }
+
 export default async function SingleArticlePage({ params }) {
 
   const articleId = (await params).articleId;
@@ -45,7 +56,13 @@ export default async function SingleArticlePage({ params }) {
 
 
               className="relative aspect-[16/9] w-full rounded-lg overflow-hidden shadow-xl mb-8">
-              <Image src={articles['data'].image} alt={`${locale == 'ar' ? articles['data'].title_ar : articles['data'].title_en}`} layout="fill" objectFit="cover" />
+              {/* <Image src={articles['data'].image} alt={`${locale == 'ar' ? articles['data'].title_ar : articles['data'].title_en}`} layout="fill" objectFit="cover" /> */}
+              <Image
+                src={articles['data'].image}
+                alt={`${locale == 'ar' ? articles['data'].title_ar : articles['data'].title_en}`}
+                fill // استخدم fill بدلاً من layout="fill"
+                style={{ objectFit: 'cover' }} // انقل objectFit إلى خاصية style
+              />
             </div>
 
             <div className="prose dark:prose-invert max-w-none   leading-relaxed">

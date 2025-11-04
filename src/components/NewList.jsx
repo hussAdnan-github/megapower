@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { fadIn } from "@/lib/frameMotion";
 import { motion } from 'framer-motion';
+import { truncateWords } from '@/context/api';
 
 export default function NewList({ news, locales }) {
   return (
@@ -21,11 +22,20 @@ export default function NewList({ news, locales }) {
         >
           <Link href={`/news/${article.id}`} className="block h-full">
             <div className="relative h-60 w-full overflow-hidden">
-              <Image
+              {/* <Image
                 src={article.image}
                 alt={`${locales == 'ar' ? article.title_ar : article.title_en}`}
                 layout="fill"
                 objectFit="cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="transition-transform duration-500 group-hover:scale-115"
+              /> */}
+
+              <Image
+                src={article.image}
+                alt={`${locales == 'ar' ? article.title_ar : article.title_en}`}
+                fill // استخدم fill بدلاً من layout="fill"
+                style={{ objectFit: 'cover' }} // انقل objectFit إلى خاصية style
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="transition-transform duration-500 group-hover:scale-115"
               />
@@ -33,17 +43,23 @@ export default function NewList({ news, locales }) {
 
             <div className="p-6 flex-grow flex flex-col">
               <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400 mb-2 gap-2">
-                <span className="text-xs font-bold border-2 px-4 py-2 rounded-full transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                  {`${locales == 'ar' ? article.title_ar : article.title_en}`}
+                <span className="text-xs font-bold border-2 px-3 py-1 rounded-full transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+
+                  {`${locales == 'ar' ? article.name_type_article_ar : article.name_type_article_en}`}
+
                 </span>
-                <span  className="w-[29%] text-end" >{article.created_at.split('T')[0]}</span>
+                <span className="w-[29%] text-end" >{article.created_at.split('T')[0]}</span>
               </div>
               <h3 className="text-xl font-bold mb-2">
                 <div className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-                  {`${locales == 'ar' ? article.name_type_article_ar : article.name_type_article_en}`}
+                  {/* {`${locales == 'ar' ? article.title_ar : article.title_en}`} */}
+
+                  {locales === 'ar'
+                    ? truncateWords(article.title_ar, 25)
+                    : truncateWords(article.title_en, 25)}
                 </div>
               </h3>
-             </div>
+            </div>
           </Link>
         </motion.div>
 

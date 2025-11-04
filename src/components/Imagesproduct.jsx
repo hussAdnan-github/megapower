@@ -57,7 +57,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Imagesproduct({ images, name, mainImage }) {
     const [activeImage, setActiveImage] = useState(mainImage || (images && images.length > 0 ? images[0].image : ''));
- 
+
     const displayImages = useMemo(() => {
         if (!images) return [];
         const mainImageExists = images.some(img => img.image === mainImage);
@@ -66,7 +66,7 @@ export default function Imagesproduct({ images, name, mainImage }) {
         }
         return [{ id: 'main-image', image: mainImage }, ...images];
     }, [images, mainImage]);
- 
+
     const imageVariants = {
         hidden: { opacity: 0, scale: 0.95 },
         visible: { opacity: 1, scale: 1 },
@@ -75,39 +75,47 @@ export default function Imagesproduct({ images, name, mainImage }) {
 
     return (
         <div className="space-y-6">
-    
+
             <div className="relative w-full aspect-square dark-bg-li rounded-lg shadow-md flex items-center justify-center overflow-hidden">
-         
+
                 <AnimatePresence mode="wait">
-                  
+
                     <motion.div
-                        key={activeImage}  
+                        key={activeImage}
                         variants={imageVariants}
                         initial="hidden"
                         animate="visible"
                         exit="exit"
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="relative w-full h-full"  
+                        className="relative w-full h-full"
                     >
-                        <Image 
+                        {/* <Image 
                             src={activeImage} 
                             alt={name} 
                             layout="fill" 
                             objectFit="contain" 
                             priority  
+                        /> */}
+
+                        <Image
+                            src={activeImage}
+                            alt={name}
+                            fill // استخدم fill بدلاً من layout="fill"
+                            style={{ objectFit: 'contain' }} // انقل objectFit إلى خاصية style
+                            priority
                         />
                     </motion.div>
                 </AnimatePresence>
             </div>
-     
+
 
             <div className="flex justify-center gap-4 flex-wrap"> {/* إضافة flex-wrap لتحسين العرض على الشاشات الصغيرة */}
                 {displayImages.map((img) => (
-                    <div 
+                    <div
                         key={img.id}
                         className={`cursor-pointer rounded-md border-2 transition-all duration-300 transform hover:scale-105
                             ${activeImage === img.image ? 'border-blue-600 shadow-lg' : 'border-transparent'
-                        }`}
+                            }`}
                         onClick={() => setActiveImage(img.image)}
                     >
                         <Image

@@ -1,19 +1,4 @@
-export async function generateMetadata() {
-  return {
-    title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
-    description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
-    keywords: ['Mega Power ميجا باور', 'مشاريع', 'دراسات حالة', 'نجاح', 'طاقة'],
-    openGraph: {
-      title: 'مشاريع Mega Power ميجا باور | قصص النجاح والدراسات',
-      description: 'شاهد كيف أحدثت Mega Power ميجا باور ثورة في الطاقة عبر مشاريعها الناجحة ودراسات الحالة.',
-      images: ['/assets/mega-power-logo.png'],
-      type: 'website',
-      locale: 'ar',
-    },
-    
-  };
-}
-
+ 
 import React from 'react'
 
 import { baseUrl } from '@/context/baseURL';
@@ -21,7 +6,43 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import Headerpage from '@/components/Headerpage';
 import PaginationControls from '@/components/layout/PaginationControls';
 import ProjectList from '@/components/ProjectList';
+import { staticMetadata } from '../metadata';
+ 
+export async function generateMetadata() {
+  const lang = await getLocale();
 
+  
+  let description = staticMetadata.newsList.description[lang];
+  let keywords = staticMetadata.newsList.keywords[lang].join(", ");
+
+  try {
+    const res = await fetch(`${baseUrl}/projects/projects/`, { next: { revalidate: 3600 } });
+    if (res.ok) {
+      const data = await res.json();
+      const projects = data['data']['result'];
+console.log(projects)
+
+      const projectsNames = projects.map(p => lang === 'ar' ? p.name_ar : p.name_en);
+      keywords += ", " + projectsNames.join(", ");
+
+      // إذا أردت جعل العنوان أول منتج
+      if (projects.length > 0) {
+
+        description = lang === 'ar' ? projects[0].short_description_ar : projects[0].short_description_en;
+      }
+    }
+  } catch (err) {
+    console.error("Failed to fetch projects for metadata:", err);
+  }
+
+  return {
+   title: staticMetadata.newsList.title[lang],
+
+    description,
+    keywords,
+
+  };
+}
 const ITEMS_PER_PAGE = 20;
 
 async function getProjects(page) {

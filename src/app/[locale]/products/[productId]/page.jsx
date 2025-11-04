@@ -5,13 +5,15 @@ import { baseUrl } from '@/context/baseURL';
 import { getLocale } from 'next-intl/server';
 import TabProduct from '@/components/TabProduct';
 import Imagesproduct from '@/components/Imagesproduct';
-
+import { staticMetadata } from '../../metadata';
+ 
+ 
 async function getProduct(id) {
   const res = await fetch(`${baseUrl}/products/products/${id}`);
-
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
+ 
 
   return res.json();
 }
@@ -32,6 +34,14 @@ async function getDocum(id) {
   }
 
   return resImg.json();
+}
+export async function generateMetadata() {
+  const locale = await getLocale();
+  return {
+    title: staticMetadata.productList.title[locale],
+    description: staticMetadata.productList.description[locale],
+    keywords: staticMetadata.productList.keywords[locale].join(', '),
+  };
 }
 
 export default async function ProductDetailPage({ params }) {

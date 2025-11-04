@@ -66,7 +66,7 @@ export default function Footer() {
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-map-marker-alt mt-1"></i>                         {t('city')}
             </p>
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-envelope mt-1"></i>info@megapower.energy</p>
-            <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i>+966 12 345 6789</p>
+            <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i>+967 777 777 777</p>
           </div>
         </div>
         <div className="text-center text-sm border-t border-gray-700 mt-10 pt-6">

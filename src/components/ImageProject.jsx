@@ -16,7 +16,7 @@ import { Autoplay, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 
 export default function ImageProject({ images, title }) {
-
+console.log(images)
     return (
         <>
             {/* <div className="flex gap-4 overflow-x-auto justify-center"> */}
