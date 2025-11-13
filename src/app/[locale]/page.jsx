@@ -55,6 +55,7 @@ import LatestNews from "@/components/LatestNews";
 import ProjectsShowcase from "@/components/ProjectsShowcase";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import { staticMetadata } from "./metadata";
+import Certifications from "@/components/Certifications";
 
 
 export default function Home() {
@@ -65,7 +66,7 @@ export default function Home() {
       <FeaturedProducts />
       <ProjectsShowcase />
       <LatestNews />
-      {/* <Certifications /> */}
+      <Certifications />
       <ContactUs />
     </>
   );

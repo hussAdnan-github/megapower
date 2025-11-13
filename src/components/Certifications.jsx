@@ -4,11 +4,11 @@ import Image from 'next/image';
 import MainTitle from './layout/MainTitle';
 
 const certifications = [
-  { src: "/assets/WERCS.jpg", alt: "ISO 9001" },
-  { src: "/assets/UL1642.jpg", alt: "CE Certification" },
-  { src: "/assets/WERCS.jpg", alt: "TUV Certified" },
-  { src: "/assets/UL1642.jpg", alt: "UL Certified" },
-  { src: "/assets/UL1642.jpg", alt: "UL Certified" },
+  { src: "/assets/pdf1.png", alt: "ISO 9001" },
+  // { src: "/assets/UL1642.jpg", alt: "CE Certification" },
+  // { src: "/assets/WERCS.jpg", alt: "TUV Certified" },
+  // { src: "/assets/UL1642.jpg", alt: "UL Certified" },
+  // { src: "/assets/UL1642.jpg", alt: "UL Certified" },
 ];
 
 
