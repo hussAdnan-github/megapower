@@ -20,29 +20,39 @@ const tajawalFont = Tajawal({
 
 
 export async function generateMetadata({ params }) {
-  const { locale } = await params; 
+  const { locale } = await params;
 
   return {
     title: siteMetadata.title[locale],
     description: siteMetadata.description[locale],
     keywords: siteMetadata.keywords[locale],
+
     openGraph: {
-      ...siteMetadata.openGraph,
       title: siteMetadata.openGraph.title[locale],
       description: siteMetadata.openGraph.description[locale],
+      url: siteMetadata.openGraph.url,
       siteName: siteMetadata.openGraph.siteName[locale],
       locale: siteMetadata.openGraph.locale[locale],
-      // images: siteMetadata.openGraph.images.map((img) => ({
-      //   ...img,
-      //   alt: img.alt[locale],
-      // })),
+      type: siteMetadata.openGraph.type,
+      images: [
+        {
+          url: "/assets/mega-power-og.jpg",
+          width: 1200,
+          height: 630,
+          alt:
+            locale === "ar"
+              ? "ميجا باور | حلول الطاقة المتكاملة"
+              : "Mega Power | Integrated Energy Solutions",
+        },
+      ],
     },
-    // twitter: {
-    //   ...siteMetadata.twitter,
-    //   title: siteMetadata.twitter.title[locale],
-    //   description: siteMetadata.twitter.description[locale],
-    // },
-    // icons: siteMetadata.icons,
+
+    twitter: {
+      card: "summary_large_image",
+      title: siteMetadata.title[locale],
+      description: siteMetadata.description[locale],
+      images: ["/assets/mega-power-og.jpg"],
+    },
   };
 }
 

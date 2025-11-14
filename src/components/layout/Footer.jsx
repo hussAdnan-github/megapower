@@ -7,9 +7,11 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaFacebookSquare } from "react-icons/fa";
 
 import { useTranslations } from 'next-intl';
+import { getLocale, getTranslations } from 'next-intl/server';
 
-export default function Footer() {
-  const t = useTranslations('Footer');
+export default async function Footer() {
+   const t =await getTranslations('Footer');
+  const locale = await getLocale();
 
   return (
     <footer className="bg-[#222222] text-gray-400    transition-colors duration-300">
@@ -26,8 +28,8 @@ export default function Footer() {
             />
             <p className="text-sm leading-relaxed mb-4">{t('mainrHeader')}</p>
             <div className="flex gap-4 mt-auto">
-              <Link href="#" aria-label="instgram" className="text-gray-400 hover:text-white transition-colors"><IoLogoInstagram className='text-2xl' /></Link>
-              <Link href="#" aria-label="faceboook" className="text-gray-400 hover:text-white transition-colors"><FaFacebookSquare className='text-2xl' /></Link>
+              <Link href="https://www.instagram.com/mega.powerye?igsh=dTh2cGs1d3Z6Y2dm" aria-label="instgram" className="text-gray-400 hover:text-white transition-colors"><IoLogoInstagram className='text-2xl' /></Link>
+              <Link href="https://www.facebook.com/share/1Cit86v7K5/" aria-label="faceboook" className="text-gray-400 hover:text-white transition-colors"><FaFacebookSquare className='text-2xl' /></Link>
              </div>
           </div>
 
@@ -66,8 +68,8 @@ export default function Footer() {
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-map-marker-alt mt-1"></i>                         {t('city')}
             </p>
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-envelope mt-1"></i>info@megapower.energy</p>
-            <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i>   553 435 783 967+</p>
-            <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i>   666 270 783 967+</p>
+            <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i>   {locale == 'ar' ? "553 435 783 967+" :"+967 783 435 553   "}</p>
+            <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i> {locale == 'ar' ? "666 270 783 967+" :"+967 783 270  666"}  </p>
           </div>
         </div>
         <div className="text-center text-sm border-t border-gray-700 mt-10 pt-6">

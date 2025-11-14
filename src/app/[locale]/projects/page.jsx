@@ -25,8 +25,7 @@ console.log(projects)
       const projectsNames = projects.map(p => lang === 'ar' ? p.name_ar : p.name_en);
       keywords += ", " + projectsNames.join(", ");
 
-      // إذا أردت جعل العنوان أول منتج
-      if (projects.length > 0) {
+       if (projects.length > 0) {
 
         description = lang === 'ar' ? projects[0].short_description_ar : projects[0].short_description_en;
       }

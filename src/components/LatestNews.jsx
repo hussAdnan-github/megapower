@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import MainTitle from './layout/MainTitle';
 import CardNews from './CardNews';
-
+ 
 
 export default async function LatestNews() {
   const getdataprojects = await getHome();
