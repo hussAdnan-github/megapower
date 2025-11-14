@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
       type: siteMetadata.openGraph.type,
       images: [
         {
-          url: "/assets/mega-power-og.jpg",
+          url: "/assets/mega-power-og.png",
           width: 1200,
           height: 630,
           alt:
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title: siteMetadata.title[locale],
       description: siteMetadata.description[locale],
-      images: ["/assets/mega-power-og.jpg"],
+      images: ["/assets/mega-power-og.png"],
     },
   };
 }
