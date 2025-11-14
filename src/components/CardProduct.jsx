@@ -7,7 +7,7 @@ import { fadIn } from "@/lib/frameMotion";
 import { motion } from 'framer-motion';
 export default function CardProduct({ product  }) {
     const locale = useLocale();
-    const t = useTranslations('Headerpage');
+    const t = useTranslations('Headerpage'); 
 
     return ( 
 
