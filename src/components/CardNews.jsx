@@ -1,22 +1,14 @@
-// 'use client';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
-import { motion } from 'framer-motion';
-import { fadIn } from '@/lib/frameMotion';
 
-export default function CardNews({ article, index }) {
-    const t = useTranslations('Headerpage');
-    const locale = useLocale();
+export default function CardNews({article , index}) {
+  const t =  useTranslations('Headerpage');
+  const locale =  useLocale();
 
     return (
         <div
-
-            //   variants={fadIn('up',.1 + article.id * 0.1 )}
-            //   initial='hidden'
-            //   whileInView={'show'}
-            //   viewport={{ once: true, amount: 0.1 }}
             className=" dark-bg-li rounded-xl shadow-lg hover:shadow-2xl group overflow-hidden flex flex-col transition-all duration-500 ease-in-out hover:scale-105 hover:-translate-y-3">
             <div className="block overflow-hidden h-52">
                 <Image
