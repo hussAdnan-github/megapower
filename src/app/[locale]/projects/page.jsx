@@ -1,4 +1,4 @@
- 
+
 import React from 'react'
 
 import { baseUrl } from '@/context/baseURL';
@@ -7,11 +7,11 @@ import Headerpage from '@/components/Headerpage';
 import PaginationControls from '@/components/layout/PaginationControls';
 import ProjectList from '@/components/ProjectList';
 import { staticMetadata } from '../metadata';
- 
+
 export async function generateMetadata() {
   const lang = await getLocale();
 
-  
+
   let description = staticMetadata.newsList.description[lang];
   let keywords = staticMetadata.newsList.keywords[lang].join(", ");
 
@@ -20,12 +20,12 @@ export async function generateMetadata() {
     if (res.ok) {
       const data = await res.json();
       const projects = data['data']['result'];
-console.log(projects)
+      console.log(projects)
 
       const projectsNames = projects.map(p => lang === 'ar' ? p.name_ar : p.name_en);
       keywords += ", " + projectsNames.join(", ");
 
-       if (projects.length > 0) {
+      if (projects.length > 0) {
 
         description = lang === 'ar' ? projects[0].short_description_ar : projects[0].short_description_en;
       }
@@ -33,20 +33,17 @@ console.log(projects)
   } catch (err) {
     console.error("Failed to fetch projects for metadata:", err);
   }
-
   return {
-   title: staticMetadata.newsList.title[lang],
-
+    title: staticMetadata.newsList.title[lang],
     description,
     keywords,
-
   };
 }
 const ITEMS_PER_PAGE = 20;
 
 async function getProjects(page) {
   const res = await fetch(`${baseUrl}projects/projects/?page=${page}`, {
-    next: { revalidate: 3600 } // تخزين النتائج لمدة ساعة (3600 ثانية)
+    next: { revalidate: 3600 }
   });
 
   if (!res.ok) {
@@ -60,7 +57,6 @@ export default async function ProjectsPage({ searchParams }) {
   const currentPage = (await searchParams).page;
   const projects = await getProjects(currentPage || 1);
 
-// 
   const {
     count: totalProjects = 0,
     next = null,

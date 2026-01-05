@@ -70,6 +70,7 @@ export default async function Footer() {
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-envelope mt-1"></i>info@megapower.energy</p>
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i>   {locale == 'ar' ? "553 435 783 967+" :"+967 783 435 553   "}</p>
             <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i> {locale == 'ar' ? "666 270 783 967+" :"+967 783 270  666"}  </p>
+            <p className="flex items-start gap-3 mb-3"><i className="fas fa-phone mt-1"></i> {locale == 'ar' ? "008613119511736" :"008613119511736"}  </p>
           </div>
         </div>
         <div className="text-center text-sm border-t border-gray-700 mt-10 pt-6">
